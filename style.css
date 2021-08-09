@@ -4,15 +4,6 @@
 }
 
 :root {
-  /* --- Colors --- */
-  --dark-mode-background: hsl(207, 26%, 17%);
-  --dark-mode-elements: hsl(209, 23%, 22%);
-  --dark-mode-text: hsl(0, 0%, 100%);
-  --light-mode-background: hsl(0, 0%, 98%);
-  --light-mode-elements: hsl(0, 0%, 100%);
-  --light-mode-text: hsl(200, 15%, 8%);
-  --light-mode-input: hsl(0, 0%, 52%);
-
   /* --- Typography --- */
   --homepage-items-text-size: 14px;
   --detail-page-text-size: 16px;
@@ -23,9 +14,24 @@
   font-family: "Nunito Sans", sans-serif;
 }
 
+[data-theme="dark"] {
+  /* --- Dark Mode Colors --- */
+  --background-color: hsl(207, 26%, 17%);
+  --element-color: hsl(209, 23%, 22%);
+  --text-color: hsl(0, 0%, 100%);
+}
+
+[data-theme="light"] {
+  /* --- Light Mode Colors --- */
+  --background-color: hsl(0, 0%, 98%);
+  --element-color: hsl(0, 0%, 100%);
+  --text-color: hsl(200, 15%, 8%);
+  --input-color: hsl(0, 0%, 52%);
+}
+
 .header {
   display: flex;
-  background-color: var(--dark-mode-elements);
+  background-color: var(--element-color);
 }
 
 .title {
