@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Where in the world?</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="title">Where in the world?</h1>
+      <div class="dark-mode-container">
+        <img
+          onclick="test()"
+          src="assets/night-mode-icon.svg"
+          alt="The icon of the dark mode option. It is a crecent moon which fills during dark mode and hollows during light mode."
+          class="dark-mode-svg"
+        />
+        <p class="dark-mode-text">Dark Mode</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="container-header">
+        <div class="search-container">
+          <img
+            src="assets/search-icon.svg"
+            alt="The icon of the search function. It is a magnifying glass."
+          />
+          <input class="search" type="search" />
+        </div>
+        <select name="regions" class="region-dropdown-list">
+          <option selected disabled hidden>Filter by Region</option>
+          <option value="africa">Africa</option>
+          <option value="america">America</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+          <option value="oceania">Oceania</option>
+        </select>
+        <!-- V content from api here V -->
+        <div class="country-list"></div>
+      </div>
+    </div>
+  </body>
+</html>
