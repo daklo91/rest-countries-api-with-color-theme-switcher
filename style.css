@@ -19,6 +19,7 @@
   --background-color: hsl(207, 26%, 17%);
   --element-color: hsl(209, 23%, 22%);
   --text-color: hsl(0, 0%, 100%);
+  --input-color: hsl(0, 0%, 100%);
 }
 
 [data-theme="light"] {
@@ -29,11 +30,29 @@
   --input-color: hsl(0, 0%, 52%);
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .header {
   display: flex;
   background-color: var(--element-color);
 }
 
+.dark-mode-icon-svg {
+  fill: var(--text-color);
+}
+
 .title {
   font-weight: var(--bold-text-weight);
+  color: var(--text-color);
+}
+
+.container {
+  background-color: var(--background-color);
+}
+
+.search-icon-svg {
+  fill: var(--input-color);
 }
