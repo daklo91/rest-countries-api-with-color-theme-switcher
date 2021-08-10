@@ -18,18 +18,22 @@
   /* --- Dark Mode Colors --- */
   --background-color: hsl(207, 26%, 17%);
   --element-color: hsl(209, 23%, 22%);
+  --element-hover-color: hsl(209, 23%, 32%);
   --text-color: hsl(0, 0%, 100%);
   --input-color: hsl(0, 0%, 100%);
   --glow-color: rgba(255, 255, 255, 0.9);
+  --dropdown-text-color: white;
 }
 
 [data-theme="light"] {
   /* --- Light Mode Colors --- */
   --background-color: hsl(0, 0%, 98%);
   --element-color: hsl(0, 0%, 100%);
+  --element-hover-color: hsl(0, 0%, 96%);
   --text-color: hsl(200, 15%, 8%);
   --input-color: hsl(0, 0%, 52%);
   --glow-color: rgba(0, 0, 0, 0.9);
+  --dropdown-text-color: black;
 }
 
 body {
@@ -151,18 +155,36 @@ body {
   border-radius: 5px;
   border: 0;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
-  /* vertical-align: middle; */
   line-height: 48px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
+
+#menu-activator:focus {
+  background-color: var(--element-hover-color);
 }
 
 #region-menu {
   display: none;
+  padding: 16px 0 16px 0;
+  position: absolute;
+  background-color: var(--element-color);
+  width: 224px;
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
+  border-radius: 5px;
+  margin-top: 4px;
+  color: var(--dropdown-text-color);
+  line-height: 30px;
 }
 
-#menu-activator:focus {
-  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.212);
+.region-menu-items {
+  padding-left: 24px;
+  cursor: pointer;
 }
 
-/* #region-menu:active {
-  display: ;
-} */
+.region-menu-items:hover {
+  background-color: var(--element-hover-color);
+}

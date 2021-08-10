@@ -16,7 +16,6 @@ function expandRegionMenu() {
 
 function closeRegionMenu() {
   var x = document.getElementById("region-menu");
-
   setTimeout(function () {
     x.style.display = "none";
   }, 100);
@@ -24,5 +23,5 @@ function closeRegionMenu() {
 
 function grabText(region) {
   let text = document.getElementById(region).textContent;
-  document.getElementById("menu-activator").textContent = text;
+  document.getElementById("menu-activator-text").textContent = text;
 }

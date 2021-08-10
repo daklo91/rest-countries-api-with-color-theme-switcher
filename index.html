@@ -70,7 +70,21 @@
             id="menu-activator"
             tabindex="1"
           >
-            Filter by Region
+            <span id="menu-activator-text">Filter by Region</span>
+            <svg
+              width="8"
+              height="6"
+              viewBox="0 0 8 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.875 0.875L4 3.75L1.125 0.875L0.25 1.75L4 5.5L7.75 1.75L6.875 0.875Z"
+                fill="black"
+              />
+            </svg>
           </div>
           <div id="region-menu">
             <div
@@ -109,15 +123,6 @@
               Oceania
             </div>
           </div>
-
-          <select name="regions" class="region-dropdown-list">
-            <option selected disabled hidden>Filter by Region</option>
-            <option class="region-dropdown" value="africa">Africa</option>
-            <option value="america">America</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
-          </select>
           <!-- V content from api here V -->
           <div class="country-list"></div>
         </div>
