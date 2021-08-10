@@ -18,7 +18,7 @@ function closeRegionMenu() {
   var x = document.getElementById("region-menu");
   setTimeout(function () {
     x.style.display = "none";
-  }, 100);
+  }, 150);
 }
 
 function grabText(region) {
