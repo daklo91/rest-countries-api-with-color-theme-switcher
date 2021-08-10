@@ -144,11 +144,16 @@ body {
 .search:focus {
   outline: none;
 }
+.dropdown-arrow {
+  fill: var(--text-color);
+  /* position: absolute;
+  z-index: 10; */
+}
 
 #menu-activator {
   background-color: var(--element-color);
   color: var(--text-color);
-  width: 200px;
+  width: 156px;
   height: 48px;
   padding-left: 24px;
   font-weight: var(--light-text-weight);
@@ -172,7 +177,7 @@ body {
   padding: 16px 0 16px 0;
   position: absolute;
   background-color: var(--element-color);
-  width: 224px;
+  width: 200px;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
   margin-top: 4px;
