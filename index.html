@@ -37,27 +37,82 @@
     <div class="container">
       <div class="content">
         <div class="search-and-dropdown-header">
-          <div class="search-container">
-            <svg
-              class="search-icon-svg"
-              x="0"
-              y="0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 22 22"
-            >
-              <path fill="none" d="M0 0h24v24H0V0z" />
-              <path
-                class="search-icon-svg-path"
-                d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          <label for="search-focus">
+            <div class="search-container">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                class="search-icon-svg"
+                height="16"
+                viewBox="2 2 18 18"
+              >
+                <path fill="none" d="M0 0h24v24H0V0z" />
+                <path
+                  class="search-icon-svg-path"
+                  d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                />
+              </svg>
+
+              <input
+                class="search"
+                id="search-focus"
+                type="search"
+                placeholder="Search for a country…"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Search for a country…'"
               />
-            </svg>
-            <input class="search" type="search" />
+            </div>
+          </label>
+
+          <div
+            onblur="closeRegionMenu()"
+            onfocus="expandRegionMenu()"
+            id="menu-activator"
+            tabindex="1"
+          >
+            Filter by Region
           </div>
+          <div id="region-menu">
+            <div
+              class="region-menu-items"
+              onclick="grabText('africa-option')"
+              id="africa-option"
+            >
+              Africa
+            </div>
+            <div
+              class="region-menu-items"
+              onclick="grabText('america-option')"
+              id="america-option"
+            >
+              America
+            </div>
+            <div
+              class="region-menu-items"
+              onclick="grabText('asia-option')"
+              id="asia-option"
+            >
+              Asia
+            </div>
+            <div
+              class="region-menu-items"
+              onclick="grabText('europe-option')"
+              id="europe-option"
+            >
+              Europe
+            </div>
+            <div
+              class="region-menu-items"
+              onclick="grabText('oceania-option')"
+              id="oceania-option"
+            >
+              Oceania
+            </div>
+          </div>
+
           <select name="regions" class="region-dropdown-list">
             <option selected disabled hidden>Filter by Region</option>
-            <option value="africa">Africa</option>
+            <option class="region-dropdown" value="africa">Africa</option>
             <option value="america">America</option>
             <option value="asia">Asia</option>
             <option value="europe">Europe</option>
