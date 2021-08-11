@@ -63,6 +63,19 @@ body {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
 }
 
+.title {
+  font-weight: var(--bold-text-weight);
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+.dark-mode-container {
+  display: flex;
+  width: 100px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .dark-mode-icon-svg {
   width: 16px;
   height: 16px;
@@ -80,19 +93,6 @@ body {
   fill: var(--text-color);
   stroke: var(--glow-color);
   stroke-width: 3px;
-}
-
-.title {
-  font-weight: var(--bold-text-weight);
-  color: var(--text-color);
-  font-size: 14px;
-}
-
-.dark-mode-container {
-  display: flex;
-  width: 100px;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .dark-mode-text {
