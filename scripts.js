@@ -1,3 +1,9 @@
+//PAGE-LOAD Scripts
+
+window.onload = function () {
+  document.documentElement.setAttribute("data-theme", "light");
+};
+
 // DARKMODE Scripts
 
 let darkMode = false;
