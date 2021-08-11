@@ -29,7 +29,7 @@
   /* --- Light Mode Colors --- */
   --background-color: hsl(0, 0%, 98%);
   --element-color: hsl(0, 0%, 100%);
-  --element-hover-color: hsl(0, 0%, 96%);
+  --element-hover-color: hsl(0, 0%, 94.5%);
   --text-color: hsl(200, 15%, 8%);
   --input-color: hsl(0, 0%, 52%);
   --glow-color: rgba(0, 0, 0, 0.9);
@@ -41,6 +41,14 @@ body {
   margin: 0;
   background-color: var(--background-color);
 }
+
+.container {
+  width: 343px;
+  padding: 16px;
+  margin: auto;
+}
+
+/* --- HEADER --- */
 
 .header .container {
   height: 48px;
@@ -84,6 +92,7 @@ body {
   display: flex;
   width: 100px;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .dark-mode-text {
@@ -94,11 +103,7 @@ body {
   margin-left: 8px;
 }
 
-.container {
-  width: 343px;
-  padding: 16px;
-  margin: auto;
-}
+/* --- SEARCH --- */
 
 .search-container {
   background-color: var(--element-color);
@@ -144,11 +149,8 @@ body {
 .search:focus {
   outline: none;
 }
-.dropdown-arrow {
-  fill: var(--text-color);
-  /* position: absolute;
-  z-index: 10; */
-}
+
+/* --- DROPDOWN --- */
 
 #menu-activator {
   background-color: var(--element-color);
@@ -192,4 +194,8 @@ body {
 
 .region-menu-items:hover {
   background-color: var(--element-hover-color);
+}
+
+.dropdown-arrow {
+  fill: var(--text-color);
 }
