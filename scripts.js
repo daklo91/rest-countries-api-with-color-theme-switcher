@@ -21,7 +21,9 @@ function switchTheme() {
 
 function expandRegionMenu() {
   var x = document.getElementById("region-menu");
-  x.style.display = "block";
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else x.style.display = "block";
 }
 
 function closeRegionMenu() {
