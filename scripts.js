@@ -1,3 +1,5 @@
+// DARKMODE Scripts
+
 let darkMode = false;
 
 function switchTheme() {
@@ -8,6 +10,8 @@ function switchTheme() {
     document.documentElement.setAttribute("data-theme", "light");
   }
 }
+
+// DROPDOWN MENU Scripts
 
 function expandRegionMenu() {
   var x = document.getElementById("region-menu");
