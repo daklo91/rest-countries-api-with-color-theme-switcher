@@ -141,6 +141,7 @@ body {
   background-color: var(--element-color);
   border: 0;
   caret-color: var(--text-color);
+  height: 100%;
 }
 
 .search::placeholder {
