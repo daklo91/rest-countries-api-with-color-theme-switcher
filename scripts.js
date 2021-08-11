@@ -1,8 +1,45 @@
 //PAGE-LOAD Scripts
 
-window.onload = function () {
-  document.documentElement.setAttribute("data-theme", "light");
-};
+document.documentElement.setAttribute("data-theme", "light");
+
+fetch("https://restcountries.eu/rest/v2/all")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    appendData(data);
+  })
+  .catch(function (err) {
+    console.log("Something went wrong: " + err);
+  });
+
+// TODO: Remove Capital if there is no Capital (Antarctica doesn't have a capital)
+
+function appendData(data) {
+  var mainContainer = document.getElementById("country-list");
+  for (var i = 0; i < data.length; i++) {
+    var div = document.createElement("div");
+    div.classList.add("country-card");
+    div.innerHTML =
+      "<img class='flag' src='" +
+      data[i].flag +
+      "'>" +
+      "<h2 class='name'>" +
+      data[i].name +
+      "</h2>" +
+      "<span>Population: " +
+      data[i].population +
+      "</span>" +
+      "<span>Region: " +
+      data[i].region +
+      "</span>" +
+      "<span>Capital: " +
+      data[i].capital +
+      "</span>";
+    mainContainer.appendChild(div);
+  }
+}
 
 // DARKMODE Scripts
 
