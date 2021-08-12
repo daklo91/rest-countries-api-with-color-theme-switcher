@@ -25,18 +25,18 @@ function appendData(data) {
       "<img class='flag' src='" +
       data[i].flag +
       "'>" +
-      "<h2 class='name'>" +
+      "<div class='stats-section'><h2 class='name'>" +
       data[i].name +
       "</h2>" +
-      "<span>Population: " +
+      "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
       data[i].population +
-      "</span>" +
-      "<span>Region: " +
+      "</span></div>" +
+      "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
       data[i].region +
-      "</span>" +
-      "<span>Capital: " +
+      "</span></div>" +
+      "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
       data[i].capital +
-      "</span>";
+      "</span></div></div>";
     mainContainer.appendChild(div);
   }
 }
