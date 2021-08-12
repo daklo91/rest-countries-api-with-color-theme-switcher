@@ -102,8 +102,8 @@ function grabText(region) {
   let text = document.getElementById(region).textContent;
   document.getElementById("menu-activator-text").textContent = text;
   var filterRegion = region.slice(0, -7);
-  filterRegion.charAt(0).toUpperCase() + filterRegion.slice(1);
-  filterTest(filterRegion.charAt(0).toUpperCase() + filterRegion.slice(1));
+  filterRegion = filterRegion.charAt(0).toUpperCase() + filterRegion.slice(1);
+  filterTest(filterRegion);
 }
 
 function filterTest(text) {
@@ -112,4 +112,19 @@ function filterTest(text) {
   }
   const result = filterToData.filter((t) => t.region == text);
   appendFilteredData(result);
+}
+
+//INPUT Scripts
+
+//TODO: Create Autocomplete for better UX and error message if a country does not match the search
+
+function getInputValue() {
+  var value = document.getElementById("search-focus").value;
+  value = value.toLowerCase();
+  value = value.charAt(0).toUpperCase() + value.slice(1);
+  const result = filterToData.filter((t) => t.name == value);
+  if (result.length > 0) {
+    appendFilteredData(result);
+    document.getElementById("search-focus").value = "";
+  } else console.log("Something went wrong");
 }
