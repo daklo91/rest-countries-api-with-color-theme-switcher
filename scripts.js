@@ -17,6 +17,7 @@ fetch("https://restcountries.eu/rest/v2/all")
   });
 
 // TODO: Remove Capital if there is no Capital (Antarctica doesn't have a capital)
+// TODO: Add commas to seperate numbers for easier readablity
 
 function appendData(data) {
   var mainContainer = document.getElementById("country-list");
@@ -117,6 +118,7 @@ function filterTest(text) {
 //INPUT Scripts
 
 //TODO: Create Autocomplete for better UX and error message if a country does not match the search
+//TODO: Make search button on phones functional
 
 function getInputValue() {
   var value = document.getElementById("search-focus").value;
