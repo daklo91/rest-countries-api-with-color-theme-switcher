@@ -218,8 +218,6 @@ body {
   display: block;
   margin: auto;
   width: 100%;
-  /* max-width: 264px;
-  height: 160px; */
 }
 
 .name {
@@ -246,4 +244,8 @@ body {
 .stats {
   font-weight: var(--light-text-weight);
   font-size: 14px;
+}
+
+.empty-data {
+  color: gray;
 }

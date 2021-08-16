@@ -16,8 +16,6 @@ fetch("https://restcountries.eu/rest/v2/all")
     console.log("Something went wrong: " + err);
   });
 
-// TODO: Remove Capital if there is no Capital (Antarctica doesn't have a capital)
-
 function appendData(data) {
   document.getElementById("country-list").innerHTML = "";
   var mainContainer = document.getElementById("country-list");
@@ -32,16 +30,32 @@ function appendData(data) {
       data[i].name +
       "</h2>" +
       "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      data[i].population.toLocaleString() +
+      getPopulation(data, i) +
       "</span></div>" +
       "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
-      data[i].region +
+      getRegion(data, i) +
       "</span></div>" +
       "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
-      data[i].capital +
+      getCapital(data, i) +
       "</span></div></div>";
     mainContainer.appendChild(div);
   }
+}
+
+function getPopulation(data, loopNumber) {
+  if (data[loopNumber].population === 0) {
+    return "<span class='empty-data'>none</span>";
+  } else return data[loopNumber].population.toLocaleString();
+}
+function getRegion(data, loopNumber) {
+  if (data[loopNumber].region === "") {
+    return "<span class='empty-data'>none</span>";
+  } else return data[loopNumber].region;
+}
+function getCapital(data, loopNumber) {
+  if (data[loopNumber].capital === "") {
+    return "<span class='empty-data'>none</span>";
+  } else return data[loopNumber].capital;
 }
 
 // DARKMODE Scripts
