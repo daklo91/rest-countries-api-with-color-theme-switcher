@@ -19,31 +19,6 @@ fetch("https://restcountries.eu/rest/v2/all")
 // TODO: Remove Capital if there is no Capital (Antarctica doesn't have a capital)
 
 function appendData(data) {
-  var mainContainer = document.getElementById("country-list");
-  for (var i = 0; i < data.length; i++) {
-    var div = document.createElement("div");
-    div.classList.add("country-card");
-    div.innerHTML =
-      "<img class='flag' src='" +
-      data[i].flag +
-      "'>" +
-      "<div class='stats-section'><h2 class='name'>" +
-      data[i].name +
-      "</h2>" +
-      "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      data[i].population.toLocaleString() +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
-      data[i].region +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
-      data[i].capital +
-      "</span></div></div>";
-    mainContainer.appendChild(div);
-  }
-}
-
-function appendFilteredData(data) {
   document.getElementById("country-list").innerHTML = "";
   var mainContainer = document.getElementById("country-list");
   for (var i = 0; i < data.length; i++) {
@@ -57,7 +32,7 @@ function appendFilteredData(data) {
       data[i].name +
       "</h2>" +
       "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      data[i].population +
+      data[i].population.toLocaleString() +
       "</span></div>" +
       "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
       data[i].region +
@@ -111,7 +86,7 @@ function filterTest(text) {
     text = "Americas";
   }
   const result = filterToData.filter((t) => t.region == text);
-  appendFilteredData(result);
+  appendData(result);
 }
 
 //INPUT Scripts
@@ -125,7 +100,7 @@ function getInputValue() {
   value = value.charAt(0).toUpperCase() + value.slice(1);
   const result = filterToData.filter((t) => t.name == value);
   if (result.length > 0) {
-    appendFilteredData(result);
+    appendData(result);
     document.getElementById("search-focus").value = "";
   } else console.log("Something went wrong");
 }
