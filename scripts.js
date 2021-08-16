@@ -17,7 +17,6 @@ fetch("https://restcountries.eu/rest/v2/all")
   });
 
 // TODO: Remove Capital if there is no Capital (Antarctica doesn't have a capital)
-// TODO: Add commas to seperate numbers for easier readablity
 
 function appendData(data) {
   var mainContainer = document.getElementById("country-list");
@@ -32,7 +31,7 @@ function appendData(data) {
       data[i].name +
       "</h2>" +
       "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      data[i].population +
+      data[i].population.toLocaleString() +
       "</span></div>" +
       "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
       data[i].region +
