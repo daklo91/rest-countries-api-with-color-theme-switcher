@@ -1,4 +1,4 @@
-//PAGE-LOAD Scripts
+//* PAGE-LOAD Scripts
 
 document.documentElement.setAttribute("data-theme", "light");
 
@@ -58,7 +58,7 @@ function getCapital(data, loopNumber) {
   } else return data[loopNumber].capital;
 }
 
-// DARKMODE Scripts
+//* DARKMODE Scripts
 
 let darkMode = false;
 
@@ -71,7 +71,7 @@ function switchTheme() {
   }
 }
 
-// DROPDOWN MENU Scripts
+//* DROPDOWN MENU Scripts
 
 function expandRegionMenu() {
   var x = document.getElementById("region-menu");
@@ -103,9 +103,8 @@ function filterTest(text) {
   appendData(result);
 }
 
-//INPUT Scripts
+//* INPUT Scripts
 
-//TODO: Create Autocomplete for better UX and error message if a country does not match the search
 //TODO: Make search button on phones functional
 
 function getInputValue() {
@@ -113,11 +112,21 @@ function getInputValue() {
   value = value.toLowerCase();
   value = value.charAt(0).toUpperCase() + value.slice(1);
   const result = filterToData.filter((t) => t.name == value);
-  if (result.length > 0) {
+  if (result.length == 1) {
     appendData(result);
-    document.getElementById("search-focus").value = "";
-  } else console.log("Error: country not found");
+  } else if (result.length == 0 && autoCompleteArray.length > 0) {
+    appendData(autoCompleteArray);
+  } else if (result.length == 0 && autoCompleteArray.length == 0) {
+    console.log("no country by that name :(");
+  }
+  autoCompleteArray = [];
+  document.getElementById("search-focus").blur();
+  document.getElementById("search-focus").value = "";
+  document.getElementById("autocomplete-modal").innerHTML = "";
 }
+
+//On the modal below the input search
+var autoCompleteArray = [];
 
 function autocompleteName() {
   document
@@ -125,14 +134,18 @@ function autocompleteName() {
     .addEventListener("input", function (e) {
       document.getElementById("autocomplete-modal").innerHTML = "";
       var val = document.getElementById("search-focus").value.toLowerCase();
+      autoCompleteArray = [];
       for (var i = 0; i < filterToData.length; i++) {
         if (val.length < 2) {
           document.getElementById("autocomplete-modal").innerHTML = "";
         } else if (filterToData[i].name.toLowerCase().startsWith(val)) {
+          autoCompleteArray.push(filterToData[i]);
           var firstSlice = filterToData[i].name.slice(0, val.length);
           var lastSlice = filterToData[i].name.slice(val.length);
           document.getElementById("autocomplete-modal").innerHTML +=
-            "<li>" +
+            "<li class='autocomplete-name' onclick='clickToFillInput(" +
+            i +
+            ")'>" +
             "<strong>" +
             firstSlice +
             "</strong>" +
@@ -141,4 +154,21 @@ function autocompleteName() {
         }
       }
     });
+}
+
+function clickToFillInput(i) {
+  document.getElementById("search-focus").value = "";
+  var arr = [];
+  arr.push(filterToData[i]);
+  appendData(arr);
+  document.getElementById("autocomplete-modal").innerHTML = "";
+}
+
+function hideShowModal() {
+  if (document.activeElement === document.getElementById("search-focus")) {
+    document.getElementById("autocomplete-modal").style.display = "block";
+  } else
+    setTimeout(function () {
+      document.getElementById("autocomplete-modal").style.display = "none";
+    }, 150);
 }

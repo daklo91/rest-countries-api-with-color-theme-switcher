@@ -59,12 +59,12 @@
                 id="search-focus"
                 type="search"
                 placeholder="Search for a country…"
-                onfocus="this.placeholder = ''; autocompleteName()"
-                onblur="this.placeholder = 'Search for a country…'"
+                onfocus="this.placeholder = ''; autocompleteName(); hideShowModal()"
+                onblur="this.placeholder = 'Search for a country…'; hideShowModal()"
               />
             </div>
-            <div id="autocomplete-modal"></div>
           </label>
+          <div id="autocomplete-modal"></div>
 
           <div
             onblur="closeRegionMenu()"
