@@ -116,5 +116,29 @@ function getInputValue() {
   if (result.length > 0) {
     appendData(result);
     document.getElementById("search-focus").value = "";
-  } else console.log("Something went wrong");
+  } else console.log("Error: country not found");
+}
+
+function autocompleteName() {
+  document
+    .getElementById("search-focus")
+    .addEventListener("input", function (e) {
+      document.getElementById("autocomplete-modal").innerHTML = "";
+      var val = document.getElementById("search-focus").value.toLowerCase();
+      for (var i = 0; i < filterToData.length; i++) {
+        if (val.length < 2) {
+          document.getElementById("autocomplete-modal").innerHTML = "";
+        } else if (filterToData[i].name.toLowerCase().startsWith(val)) {
+          var firstSlice = filterToData[i].name.slice(0, val.length);
+          var lastSlice = filterToData[i].name.slice(val.length);
+          document.getElementById("autocomplete-modal").innerHTML +=
+            "<li>" +
+            "<strong>" +
+            firstSlice +
+            "</strong>" +
+            lastSlice +
+            "</li>";
+        }
+      }
+    });
 }
