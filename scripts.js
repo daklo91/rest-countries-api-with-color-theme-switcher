@@ -105,8 +105,6 @@ function filterTest(text) {
 
 //* INPUT Scripts
 
-//TODO: Make search button on phones functional
-
 function getInputValue() {
   var value = document.getElementById("search-focus").value;
   value = value.toLowerCase();
@@ -139,6 +137,7 @@ function autocompleteName() {
         if (val.length < 2) {
           document.getElementById("autocomplete-modal").innerHTML = "";
         } else if (filterToData[i].name.toLowerCase().startsWith(val)) {
+          document.getElementById("autocomplete-modal").style.display = "block";
           autoCompleteArray.push(filterToData[i]);
           var firstSlice = filterToData[i].name.slice(0, val.length);
           var lastSlice = filterToData[i].name.slice(val.length);
@@ -162,10 +161,14 @@ function clickToFillInput(i) {
   arr.push(filterToData[i]);
   appendData(arr);
   document.getElementById("autocomplete-modal").innerHTML = "";
+  autoCompleteArray = [];
 }
 
 function hideShowModal() {
-  if (document.activeElement === document.getElementById("search-focus")) {
+  if (
+    document.activeElement === document.getElementById("search-focus") &&
+    autoCompleteArray.length > 0
+  ) {
     document.getElementById("autocomplete-modal").style.display = "block";
   } else
     setTimeout(function () {
