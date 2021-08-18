@@ -18,7 +18,7 @@ fetch("https://restcountries.eu/rest/v2/all")
 
 function appendData(data) {
   document.getElementById("country-list").innerHTML = "";
-  var mainContainer = document.getElementById("country-list");
+  var countryCard = document.getElementById("country-list");
   for (var i = 0; i < data.length; i++) {
     var div = document.createElement("div");
     div.classList.add("country-card");
@@ -38,24 +38,24 @@ function appendData(data) {
       "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
       getCapital(data, i) +
       "</span></div></div>";
-    mainContainer.appendChild(div);
+    countryCard.appendChild(div);
   }
 }
 
-function getPopulation(data, loopNumber) {
-  if (data[loopNumber].population === 0) {
+function getPopulation(data, i) {
+  if (data[i].population === 0) {
     return "<span class='empty-data'>none</span>";
-  } else return data[loopNumber].population.toLocaleString();
+  } else return data[i].population.toLocaleString();
 }
-function getRegion(data, loopNumber) {
-  if (data[loopNumber].region === "") {
+function getRegion(data, i) {
+  if (data[i].region === "") {
     return "<span class='empty-data'>none</span>";
-  } else return data[loopNumber].region;
+  } else return data[i].region;
 }
-function getCapital(data, loopNumber) {
-  if (data[loopNumber].capital === "") {
+function getCapital(data, i) {
+  if (data[i].capital === "") {
     return "<span class='empty-data'>none</span>";
-  } else return data[loopNumber].capital;
+  } else return data[i].capital;
 }
 
 //* DARKMODE Scripts
