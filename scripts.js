@@ -81,22 +81,12 @@ function expandRegionMenu() {
 }
 
 function closeRegionMenu() {
-  var x = (document.getElementById("region-menu").style.display = "none");
+  document.getElementById("region-menu").style.display = "none";
 }
 
-function grabText(region) {
-  let text = document.getElementById(region).textContent;
-  document.getElementById("menu-activator-text").textContent = text;
-  var filterRegion = region.slice(0, -7);
-  filterRegion = filterRegion.charAt(0).toUpperCase() + filterRegion.slice(1);
-  filterTest(filterRegion);
-}
-
-function filterTest(text) {
-  if (text == "America") {
-    text = "Americas";
-  }
-  const result = filterToData.filter((t) => t.region == text);
+function filterByRegion(region) {
+  document.getElementById("menu-activator").innerText = region;
+  const result = filterToData.filter((t) => t.region == region);
   appendData(result);
 }
 
@@ -118,6 +108,7 @@ function getInputValue() {
   document.getElementById("search-focus").blur();
   document.getElementById("search-focus").value = "";
   document.getElementById("autocomplete-modal").innerHTML = "";
+  document.getElementById("menu-activator").innerText = "Filter by Region";
 }
 
 //On the modal below the input search
