@@ -74,17 +74,14 @@ function switchTheme() {
 //* DROPDOWN MENU Scripts
 
 function expandRegionMenu() {
-  var x = document.getElementById("region-menu");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else x.style.display = "block";
+  var menu = document.getElementById("region-menu");
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else menu.style.display = "block";
 }
 
 function closeRegionMenu() {
-  var x = document.getElementById("region-menu");
-  setTimeout(function () {
-    x.style.display = "none";
-  }, 150);
+  var x = (document.getElementById("region-menu").style.display = "none");
 }
 
 function grabText(region) {

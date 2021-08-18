@@ -69,12 +69,7 @@
           </label>
           <div id="autocomplete-modal"></div>
 
-          <div
-            onblur="closeRegionMenu()"
-            onclick="expandRegionMenu()"
-            id="menu-activator"
-            tabindex="1"
-          >
+          <div onclick="expandRegionMenu()" id="menu-activator" tabindex="1">
             <span id="menu-activator-text">Filter by Region</span>
             <svg
               width="8"
@@ -93,35 +88,35 @@
           <div id="region-menu">
             <div
               class="region-menu-items"
-              onclick="grabText('africa-option')"
+              onclick="grabText('africa-option'); closeRegionMenu()"
               id="africa-option"
             >
               Africa
             </div>
             <div
               class="region-menu-items"
-              onclick="grabText('america-option')"
+              onclick="grabText('america-option'); closeRegionMenu()"
               id="america-option"
             >
               America
             </div>
             <div
               class="region-menu-items"
-              onclick="grabText('asia-option')"
+              onclick="grabText('asia-option'); closeRegionMenu()"
               id="asia-option"
             >
               Asia
             </div>
             <div
               class="region-menu-items"
-              onclick="grabText('europe-option')"
+              onclick="grabText('europe-option'); closeRegionMenu()"
               id="europe-option"
             >
               Europe
             </div>
             <div
               class="region-menu-items"
-              onclick="grabText('oceania-option')"
+              onclick="grabText('oceania-option'); closeRegionMenu()"
               id="oceania-option"
             >
               Oceania
