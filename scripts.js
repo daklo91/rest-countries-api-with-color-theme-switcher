@@ -2,14 +2,14 @@
 
 document.documentElement.setAttribute("data-theme", "light");
 
-var filterToData = "";
+var dataStore = "";
 
 fetch("https://restcountries.eu/rest/v2/all")
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    filterToData = data;
+    dataStore = data;
     appendData(data);
   })
   .catch(function (err) {
@@ -86,7 +86,7 @@ function closeRegionMenu() {
 
 function filterByRegion(region) {
   document.getElementById("menu-activator").innerText = region;
-  const result = filterToData.filter((t) => t.region == region);
+  const result = dataStore.filter((d) => d.region == region);
   appendData(result);
 }
 
@@ -96,7 +96,7 @@ function getInputValue() {
   var value = document.getElementById("search-focus").value;
   value = value.toLowerCase();
   value = value.charAt(0).toUpperCase() + value.slice(1);
-  const result = filterToData.filter((t) => t.name == value);
+  const result = dataStore.filter((d) => d.name == value);
   if (result.length == 1) {
     appendData(result);
   } else if (result.length == 0 && autoCompleteArray.length > 0) {
@@ -111,24 +111,23 @@ function getInputValue() {
   document.getElementById("menu-activator").innerText = "Filter by Region";
 }
 
-//On the modal below the input search
 var autoCompleteArray = [];
 
 function autocompleteName() {
   document
     .getElementById("search-focus")
-    .addEventListener("input", function (e) {
+    .addEventListener("input", function () {
       document.getElementById("autocomplete-modal").innerHTML = "";
-      var val = document.getElementById("search-focus").value.toLowerCase();
+      var value = document.getElementById("search-focus").value.toLowerCase();
       autoCompleteArray = [];
-      for (var i = 0; i < filterToData.length; i++) {
-        if (val.length < 2) {
-          document.getElementById("autocomplete-modal").innerHTML = "";
-        } else if (filterToData[i].name.toLowerCase().startsWith(val)) {
+      for (var i = 0; i < dataStore.length; i++) {
+        if (value.length < 2) {
+          document.getElementById("autocomplete-modal").style.display = "none";
+        } else if (dataStore[i].name.toLowerCase().startsWith(value)) {
           document.getElementById("autocomplete-modal").style.display = "block";
-          autoCompleteArray.push(filterToData[i]);
-          var firstSlice = filterToData[i].name.slice(0, val.length);
-          var lastSlice = filterToData[i].name.slice(val.length);
+          autoCompleteArray.push(dataStore[i]);
+          var firstSlice = dataStore[i].name.slice(0, value.length);
+          var lastSlice = dataStore[i].name.slice(value.length);
           document.getElementById("autocomplete-modal").innerHTML +=
             "<li class='autocomplete-name' onclick='clickToFillInput(" +
             i +
@@ -146,7 +145,7 @@ function autocompleteName() {
 function clickToFillInput(i) {
   document.getElementById("search-focus").value = "";
   var arr = [];
-  arr.push(filterToData[i]);
+  arr.push(dataStore[i]);
   appendData(arr);
   document.getElementById("autocomplete-modal").innerHTML = "";
   autoCompleteArray = [];
