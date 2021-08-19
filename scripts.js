@@ -58,6 +58,16 @@ function getCapital(data, i) {
   } else return data[i].capital;
 }
 
+// -- Close menus when click on window
+window.onclick = function () {
+  if ((document.getElementById("region-menu").style.display = "block")) {
+    document.getElementById("region-menu").style.display = "none";
+  }
+  if ((document.getElementById("autocomplete-modal").style.display = "block")) {
+    document.getElementById("autocomplete-modal").style.display = "none";
+  }
+};
+
 //* DARKMODE Scripts
 
 let darkMode = false;
@@ -73,15 +83,14 @@ function switchTheme() {
 
 //* DROPDOWN MENU Scripts
 
-function expandRegionMenu() {
+function expandRegionMenu(event) {
+  event.stopPropagation();
+  document.getElementById("autocomplete-modal").style.display = "none";
   var menu = document.getElementById("region-menu");
   if (menu.style.display === "block") {
     menu.style.display = "none";
+    menu.blur();
   } else menu.style.display = "block";
-}
-
-function closeRegionMenu() {
-  document.getElementById("region-menu").style.display = "none";
 }
 
 function filterByRegion(region) {
@@ -113,7 +122,12 @@ function getInputValue() {
 
 var autoCompleteArray = [];
 
-function autocompleteName() {
+function autocompleteName(event) {
+  event.stopPropagation();
+  document.getElementById("region-menu").style.display = "none";
+  if (document.getElementById("search-focus").value.length > 2) {
+    document.getElementById("autocomplete-modal").style.display = "block";
+  }
   document
     .getElementById("search-focus")
     .addEventListener("input", function () {

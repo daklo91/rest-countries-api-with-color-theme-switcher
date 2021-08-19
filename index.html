@@ -41,7 +41,7 @@
       <div class="content">
         <div class="search-and-dropdown-header">
           <label for="search-focus">
-            <div class="search-container">
+            <div class="search-container" onclick="autocompleteName(event)">
               <svg
                 onclick="getInputValue()"
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,14 +62,17 @@
                 id="search-focus"
                 type="search"
                 placeholder="Search for a country…"
-                onfocus="this.placeholder = ''; autocompleteName(); hideShowModal()"
-                onblur="this.placeholder = 'Search for a country…'; hideShowModal()"
+                onblur="this.placeholder = 'Search for a country…'"
               />
             </div>
           </label>
           <div id="autocomplete-modal"></div>
 
-          <div onclick="expandRegionMenu()" id="menu-activator" tabindex="1">
+          <div
+            onclick="expandRegionMenu(event)"
+            id="menu-activator"
+            tabindex="1"
+          >
             <span id="menu-activator-text">Filter by Region</span>
             <svg
               width="8"
@@ -88,35 +91,35 @@
           <div id="region-menu">
             <div
               class="region-menu-items"
-              onclick="filterByRegion('Africa'); closeRegionMenu()"
+              onclick="filterByRegion('Africa')"
               id="africa-option"
             >
               Africa
             </div>
             <div
               class="region-menu-items"
-              onclick="filterByRegion('Americas'); closeRegionMenu()"
+              onclick="filterByRegion('Americas')"
               id="america-option"
             >
               America
             </div>
             <div
               class="region-menu-items"
-              onclick="filterByRegion('Asia'); closeRegionMenu()"
+              onclick="filterByRegion('Asia')"
               id="asia-option"
             >
               Asia
             </div>
             <div
               class="region-menu-items"
-              onclick="filterByRegion('Europe'); closeRegionMenu()"
+              onclick="filterByRegion('Europe')"
               id="europe-option"
             >
               Europe
             </div>
             <div
               class="region-menu-items"
-              onclick="filterByRegion('Oceania'); closeRegionMenu()"
+              onclick="filterByRegion('Oceania')"
               id="oceania-option"
             >
               Oceania
