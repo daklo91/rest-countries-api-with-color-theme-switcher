@@ -87,9 +87,10 @@ function expandRegionMenu(event) {
   event.stopPropagation();
   document.getElementById("autocomplete-modal").style.display = "none";
   var menu = document.getElementById("region-menu");
+  var activator = document.getElementById("menu-activator");
   if (menu.style.display === "block") {
     menu.style.display = "none";
-    menu.blur();
+    activator.blur();
   } else menu.style.display = "block";
 }
 
