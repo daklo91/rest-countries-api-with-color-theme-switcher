@@ -117,6 +117,7 @@ function getInputValue() {
   document.getElementById("search-focus").blur();
   document.getElementById("search-focus").value = "";
   document.getElementById("autocomplete-modal").innerHTML = "";
+  document.getElementById("autocomplete-modal").style.display = "none";
   document.getElementById("menu-activator").innerText = "Filter by Region";
 }
 
