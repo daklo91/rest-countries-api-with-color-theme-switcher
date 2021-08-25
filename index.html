@@ -11,7 +11,7 @@
   <body>
     <!-- TODO: Add better semantics -->
     <div class="header">
-      <div class="container">
+      <div class="header-container">
         <h1 class="title" onclick="window.location = '/';">
           Where in the world?
         </h1>
@@ -40,7 +40,7 @@
     <div class="container">
       <div class="content">
         <div class="search-and-dropdown-header">
-          <label for="search-focus">
+          <label for="search-focus" id="search-box">
             <div class="search-container" onclick="autocompleteName(event)">
               <svg
                 onclick="getInputValue()"
@@ -65,8 +65,8 @@
                 onblur="this.placeholder = 'Search for a country…'"
               />
             </div>
+            <div id="autocomplete-modal"></div>
           </label>
-          <div id="autocomplete-modal"></div>
 
           <div
             onclick="expandRegionMenu(event)"
@@ -125,9 +125,9 @@
               Oceania
             </div>
           </div>
-          <!-- V content from api here V -->
-          <div id="country-list"></div>
         </div>
+        <!-- V content from api here V -->
+        <div id="country-list-container"><div id="country-list"></div></div>
       </div>
     </div>
   </body>
