@@ -138,6 +138,11 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+  font-size: 12px;
+}
+
+input[type="search"] {
+  font-size: 12px;
 }
 
 .search-container:focus-within {
@@ -200,6 +205,7 @@ body {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  font-size: 14px;
 }
 
 #menu-activator:focus {
@@ -233,6 +239,7 @@ body {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  font-size: 14px;
 }
 
 .region-menu-items:hover {
@@ -316,6 +323,7 @@ body {
   padding-left: 24px;
   cursor: pointer;
   list-style-type: none;
+  font-size: 12px;
 }
 
 .autocomplete-name:hover {
@@ -372,5 +380,25 @@ body {
 
   .country-card {
     margin: 37.5px;
+  }
+
+  #menu-activator {
+    font-size: 16px;
+  }
+
+  .region-menu-items {
+    font-size: 16px;
+  }
+
+  input[type="search"] {
+    font-size: 14px;
+  }
+
+  .autocomplete-name {
+    font-size: 14px;
+  }
+
+  .search-icon-svg {
+    transform: scale(1.4);
   }
 }
