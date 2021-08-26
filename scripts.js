@@ -22,6 +22,11 @@ function appendData(data) {
   for (var i = 0; i < data.length; i++) {
     var div = document.createElement("div");
     div.classList.add("country-card");
+    div.setAttribute("id", i);
+    div.onclick = function (event) {
+      window.location.href = data[event.currentTarget.id].name.toLowerCase();
+      console.log(data[event.currentTarget.id].name.toLowerCase());
+    };
     div.innerHTML =
       "<img class='flag' src='" +
       data[i].flag +
