@@ -183,3 +183,12 @@ function hideShowModal() {
       document.getElementById("autocomplete-modal").style.display = "none";
     }, 150);
 }
+
+// NAVIGATE TO NEW ROUTE
+
+window.onload = function checkURL() {
+  if (window.location.href == "albania") {
+    // document.getElementById("country-list").innerHTML = "";
+    document.getElementsByClassName("content").innerHTML = "hey";
+  }
+};
