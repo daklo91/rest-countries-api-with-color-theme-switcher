@@ -11,9 +11,10 @@ fetch("https://restcountries.eu/rest/v2/all")
   .then(function (data) {
     dataStore = data;
     appendData(data);
+    loadHashFromURL();
   })
   .catch(function (err) {
-    console.log("Something went wrong: " + err);
+    console.log(err);
   });
 
 function appendData(data) {
@@ -22,6 +23,13 @@ function appendData(data) {
   for (var i = 0; i < data.length; i++) {
     var div = document.createElement("div");
     div.classList.add("country-card");
+    div.setAttribute("id", i);
+    div.onclick = function (event) {
+      window.location.href =
+        "#" + data[event.currentTarget.id].name.toLowerCase();
+      // console.log(data[event.currentTarget.id].name.toLowerCase());
+      findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
+    };
     div.innerHTML =
       "<img class='flag' src='" +
       data[i].flag +
@@ -177,4 +185,45 @@ function hideShowModal() {
     setTimeout(function () {
       document.getElementById("autocomplete-modal").style.display = "none";
     }, 150);
+}
+
+// NAVIGATE TO NEW ROUTE
+
+function loadHashFromURL() {
+  if (window.location.hash == "") {
+    window.location.href = "#;)";
+  } else if (window.location.hash != "#;)") {
+    var hash = window.location.hash.substring(1);
+    findDataWithHash(hash);
+  }
+}
+
+function closeModal() {
+  window.location.href = "#;)";
+  document.getElementById("country-modal").innerHTML = "";
+  document.getElementById("country-modal").style.display = "none";
+  loadHashFromURL();
+}
+
+window.addEventListener("hashchange", function () {
+  loadHashFromURL();
+});
+
+function findDataWithHash(hash) {
+  const index = dataStore.findIndex(
+    (data) => data.name.toLowerCase() === decodeURI(hash)
+  );
+  console.log(index);
+  if (index === -1) {
+    window.location.href = "#;)";
+  } else if (hash != "#;)") {
+    var modal = document.getElementById("country-modal");
+    modal.style.display = "block";
+    modal.innerHTML =
+      "<button onclick='closeModal()'>Go Back</button>" +
+      "Country Name " +
+      dataStore[index].name +
+      "Country Population " +
+      dataStore[index].population;
+  }
 }
