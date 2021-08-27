@@ -223,5 +223,3 @@ function findDataWithHash(hash) {
       dataStore[index].population;
   }
 }
-
-window.location.replace("#;)");
