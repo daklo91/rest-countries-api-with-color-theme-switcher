@@ -12,6 +12,7 @@ fetch("https://restcountries.eu/rest/v2/all")
     dataStore = data;
     appendData(data);
     loadHashFromURL();
+    console.log(dataStore[0]);
   })
   .catch(function (err) {
     console.log(err);
@@ -213,17 +214,50 @@ function findDataWithHash(hash) {
   const index = dataStore.findIndex(
     (data) => data.name.toLowerCase() === decodeURI(hash)
   );
-  console.log(index);
+
   if (index === -1) {
     window.location.href = "#;)";
   } else if (hash != "#;)") {
     var modal = document.getElementById("country-modal");
     modal.style.display = "block";
+    var currencies = "";
+    for (var i = 0; dataStore[index].currencies.length > i; i++) {
+      currencies += "<span>" + dataStore[index].currencies[i].name + "<span>";
+      if (dataStore[index].currencies.length - 1 > i) {
+        currencies += ", ";
+      }
+    }
+    var languages = "";
+    for (var i = 0; dataStore[index].languages.length > i; i++) {
+      languages += "<span>" + dataStore[index].languages[i].name + "<span>";
+      if (dataStore[index].languages.length - 1 > i) {
+        languages += ", ";
+      }
+    }
     modal.innerHTML =
       "<button onclick='closeModal()'>Go Back</button>" +
-      "Country Name " +
+      "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
+      dataStore[index].flag +
+      "'></img><div class='detail-stats-main-container'><h1>" +
       dataStore[index].name +
-      "Country Population " +
-      dataStore[index].population;
+      "</h1><div class='detail-stats-container'><ul class='detail-stats-list'><li><span class='detail-stat-title'>Native Name: </span><span class='detail-stat-title'>" +
+      dataStore[index].nativeName +
+      "</span></li><li><span class='detail-stat-title'>Population: </span><span class='detail-stat-title'>" +
+      dataStore[index].population +
+      "</span></li><li><span class='detail-stat-title'>Region: </span><span class='detail-stat-title'>" +
+      dataStore[index].region +
+      "</span></li><li><span class='detail-stat-title'>Sub Region: </span><span class='detail-stat-title'>" +
+      dataStore[index].subregion +
+      "</span></li><li><span class='detail-stat-title'>Capital: </span><span class='detail-stat-title'>" +
+      dataStore[index].capital +
+      "</span></li></ul><ul class='detail-stats-list'><li><span class='detail-stat-title'>Top Level Domain: </span><span class='detail-stat-title'>" +
+      dataStore[index].topLevelDomain +
+      "</span></li><li><span class='detail-stat-title'>Currencies: </span><span class='detail-stat-title'>" +
+      currencies +
+      "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-title'>" +
+      languages +
+      "</span></li></ul></div></div></div></div>";
+
+    "Country Population " + dataStore[index].population;
   }
 }
