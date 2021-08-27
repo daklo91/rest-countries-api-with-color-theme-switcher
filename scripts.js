@@ -205,6 +205,10 @@ function closeModal() {
   loadHashFromURL();
 }
 
+window.addEventListener("hashchange", function () {
+  loadHashFromURL();
+});
+
 function findDataWithHash(hash) {
   const index = dataStore.findIndex(
     (data) => data.name.toLowerCase() === decodeURI(hash)
