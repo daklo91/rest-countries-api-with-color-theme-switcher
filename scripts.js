@@ -178,3 +178,25 @@ function hideShowModal() {
       document.getElementById("autocomplete-modal").style.display = "none";
     }, 150);
 }
+
+//* HASH Navigation
+
+function displayHash() {
+  var theHash = window.location.hash;
+  var modal = document.getElementById("country-modal");
+  modal.innerText = "Current Hash: " + theHash;
+  return true;
+}
+
+//? Tenker displayHash nedenfor burde bli erstattet med appendData, også har appendData logikken om hva som skal rendere ifølge hashen
+//? det går sikkert fint å bruke en modal også
+
+window.addEventListener("hashchange", function () {
+  // console.log("hashchange event");
+  displayHash();
+});
+
+// window.addEventListener("DOMContentLoaded", function (ev) {
+//   // console.log("DOMContentLoaded event");
+//   displayHash();
+// });
