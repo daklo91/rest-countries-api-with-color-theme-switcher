@@ -189,44 +189,17 @@ function hideShowModal() {
 
 // NAVIGATE TO NEW ROUTE
 
-// window.onload = function checkURL() {
-//   if (window.location.href == "albania") {
-//     // document.getElementById("country-list").innerHTML = "";
-//     document.getElementsByClassName("content").innerHTML = "hey";
-//   }
-// };
-
-function displayHash() {
-  var theHash = window.location.hash;
-  return true;
-}
-
-//? Tenker displayHash nedenfor burde bli erstattet med appendData, også har appendData logikken om hva som skal rendere ifølge hashen
-//? det går sikkert fint å bruke en modal også
-
-window.addEventListener("hashchange", function () {
-  // console.log("hashchange event");
-  displayHash();
-});
-
-// window.addEventListener("DOMContentLoaded", function (ev) {
-//   // console.log("DOMContentLoaded event");
-//   displayHash();
-// });
-
 function loadHashFromURL() {
   if (window.location.hash == "") {
     window.location.href = "#";
-  } else console.log(window.location.hash);
-  var hash = window.location.hash.substring(1);
-  console.log(hash);
+  } else var hash = window.location.hash.substring(1);
   findDataWithHash(hash);
 }
 
-//TODO: add støtte til det med mellomrom
-
 function findDataWithHash(hash) {
-  const index = dataStore.findIndex((data) => data.name.toLowerCase() === hash);
+  const index = dataStore.findIndex(
+    (data) => data.name.toLowerCase() === decodeURI(hash)
+  );
   console.log(index);
 
   var modal = document.getElementById("country-modal");
