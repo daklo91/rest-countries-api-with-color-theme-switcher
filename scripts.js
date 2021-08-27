@@ -14,7 +14,7 @@ fetch("https://restcountries.eu/rest/v2/all")
     loadHashFromURL();
   })
   .catch(function (err) {
-    console.log("Something went wrong: " + err);
+    console.log(err);
   });
 
 function appendData(data) {
@@ -191,9 +191,18 @@ function hideShowModal() {
 
 function loadHashFromURL() {
   if (window.location.hash == "") {
-    window.location.href = "#";
-  } else var hash = window.location.hash.substring(1);
-  findDataWithHash(hash);
+    window.location.href = "#;)";
+  } else if (window.location.hash != "#;)") {
+    var hash = window.location.hash.substring(1);
+    findDataWithHash(hash);
+  }
+}
+
+function closeModal() {
+  window.location.href = "#;)";
+  document.getElementById("country-modal").innerHTML = "";
+  document.getElementById("country-modal").style.display = "none";
+  loadHashFromURL();
 }
 
 function findDataWithHash(hash) {
@@ -201,11 +210,18 @@ function findDataWithHash(hash) {
     (data) => data.name.toLowerCase() === decodeURI(hash)
   );
   console.log(index);
-
-  var modal = document.getElementById("country-modal");
-  modal.innerText =
-    "Country Name " +
-    dataStore[index].name +
-    "Country Population " +
-    dataStore[index].population;
+  if (index === -1) {
+    window.location.href = "#;)";
+  } else if (hash != "#;)") {
+    var modal = document.getElementById("country-modal");
+    modal.style.display = "block";
+    modal.innerHTML =
+      "<button onclick='closeModal()'>Go Back</button>" +
+      "Country Name " +
+      dataStore[index].name +
+      "Country Population " +
+      dataStore[index].population;
+  }
 }
+
+window.location.replace("#;)");

@@ -330,6 +330,17 @@ input[type="search"] {
   background-color: var(--element-hover-color);
 }
 
+/* ROUTING */
+
+#country-modal {
+  position: fixed;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
 @media screen and (min-width: 850px) {
   .container {
     width: 85%;
