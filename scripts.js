@@ -11,6 +11,7 @@ fetch("https://restcountries.eu/rest/v2/all")
   .then(function (data) {
     dataStore = data;
     appendData(data);
+    loadHashFromURL();
   })
   .catch(function (err) {
     console.log("Something went wrong: " + err);
@@ -24,8 +25,10 @@ function appendData(data) {
     div.classList.add("country-card");
     div.setAttribute("id", i);
     div.onclick = function (event) {
-      window.location.href = data[event.currentTarget.id].name.toLowerCase();
-      console.log(data[event.currentTarget.id].name.toLowerCase());
+      window.location.href =
+        "#" + data[event.currentTarget.id].name.toLowerCase();
+      // console.log(data[event.currentTarget.id].name.toLowerCase());
+      findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
     };
     div.innerHTML =
       "<img class='flag' src='" +
@@ -186,9 +189,50 @@ function hideShowModal() {
 
 // NAVIGATE TO NEW ROUTE
 
-window.onload = function checkURL() {
-  if (window.location.href == "albania") {
-    // document.getElementById("country-list").innerHTML = "";
-    document.getElementsByClassName("content").innerHTML = "hey";
-  }
-};
+// window.onload = function checkURL() {
+//   if (window.location.href == "albania") {
+//     // document.getElementById("country-list").innerHTML = "";
+//     document.getElementsByClassName("content").innerHTML = "hey";
+//   }
+// };
+
+function displayHash() {
+  var theHash = window.location.hash;
+  return true;
+}
+
+//? Tenker displayHash nedenfor burde bli erstattet med appendData, også har appendData logikken om hva som skal rendere ifølge hashen
+//? det går sikkert fint å bruke en modal også
+
+window.addEventListener("hashchange", function () {
+  // console.log("hashchange event");
+  displayHash();
+});
+
+// window.addEventListener("DOMContentLoaded", function (ev) {
+//   // console.log("DOMContentLoaded event");
+//   displayHash();
+// });
+
+function loadHashFromURL() {
+  if (window.location.hash == "") {
+    window.location.href = "#";
+  } else console.log(window.location.hash);
+  var hash = window.location.hash.substring(1);
+  console.log(hash);
+  findDataWithHash(hash);
+}
+
+//TODO: add støtte til det med mellomrom
+
+function findDataWithHash(hash) {
+  const index = dataStore.findIndex((data) => data.name.toLowerCase() === hash);
+  console.log(index);
+
+  var modal = document.getElementById("country-modal");
+  modal.innerText =
+    "Country Name " +
+    dataStore[index].name +
+    "Country Population " +
+    dataStore[index].population;
+}
