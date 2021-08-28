@@ -237,21 +237,21 @@ function findDataWithHash(hash) {
     modal.innerHTML =
       "<button onclick='closeModal()'>Go Back</button>" +
       "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
-      dataStore[index].flag +
+      verifyData(dataStore[index].flag) +
       "'></img><div class='detail-stats-main-container'><h1>" +
-      dataStore[index].name +
+      verifyData(dataStore[index].name) +
       "</h1><div class='detail-stats-container'><ul class='detail-stats-list'><li><span class='detail-stat-title'>Native Name: </span><span class='detail-stat-title'>" +
-      dataStore[index].nativeName +
+      verifyData(dataStore[index].nativeName) +
       "</span></li><li><span class='detail-stat-title'>Population: </span><span class='detail-stat-title'>" +
-      dataStore[index].population +
+      verifyData(dataStore[index].population) +
       "</span></li><li><span class='detail-stat-title'>Region: </span><span class='detail-stat-title'>" +
-      dataStore[index].region +
+      verifyData(dataStore[index].region) +
       "</span></li><li><span class='detail-stat-title'>Sub Region: </span><span class='detail-stat-title'>" +
-      dataStore[index].subregion +
+      verifyData(dataStore[index].subregion) +
       "</span></li><li><span class='detail-stat-title'>Capital: </span><span class='detail-stat-title'>" +
-      dataStore[index].capital +
+      verifyData(dataStore[index].capital) +
       "</span></li></ul><ul class='detail-stats-list'><li><span class='detail-stat-title'>Top Level Domain: </span><span class='detail-stat-title'>" +
-      dataStore[index].topLevelDomain +
+      verifyData(dataStore[index].topLevelDomain) +
       "</span></li><li><span class='detail-stat-title'>Currencies: </span><span class='detail-stat-title'>" +
       currencies +
       "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-title'>" +
@@ -260,4 +260,14 @@ function findDataWithHash(hash) {
 
     "Country Population " + dataStore[index].population;
   }
+}
+
+function verifyData(data) {
+  if (data === "") {
+    return "<span class='empty-data'>none</span>";
+  } else if (data === 0) {
+    return "<span class='empty-data'>none</span>";
+  } else if (typeof data === "number") {
+    return data.toLocaleString();
+  } else return data;
 }
