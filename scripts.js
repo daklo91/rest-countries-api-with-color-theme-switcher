@@ -256,9 +256,9 @@ function findDataWithHash(hash) {
     // document.body.style.position = "fixed";
     modal.innerHTML =
       "<div id='detail-page-container'>" +
-      "<button onclick='closeModal()'>" +
+      "<button id='back-button' onclick='closeModal()'>" +
       arrowSVG +
-      "Go Back</button>" +
+      "Back</button>" +
       "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
       verifyData(dataStore[index].flag) +
       "'></img><div class='detail-stats-main-container'><h1>" +
