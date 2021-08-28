@@ -255,33 +255,33 @@ function findDataWithHash(hash) {
     document.body.style.overflow = "hidden";
     // document.body.style.position = "fixed";
     modal.innerHTML =
-      "<div id='detail-page-container'>" +
+      "<div class='detail-container'>" +
       "<button id='back-button' onclick='closeModal()'>" +
       arrowSVG +
       "Back</button>" +
-      "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
+      "<div class='detail-flag-container'><img class='detail-flag' src='" +
       verifyData(dataStore[index].flag) +
-      "'></img><div class='detail-stats-main-container'><h1>" +
+      "'></img></div><div class='detail-stats-main-container'><h1 class='detail-page-name'>" +
       verifyData(dataStore[index].name) +
-      "</h1><div class='detail-stats-container'><ul class='detail-stats-list'><li><span class='detail-stat-title'>Native Name: </span><span class='detail-stat-title'>" +
+      "</h1><div class='detail-stats-container'><ul class='detail-stats-list' id='list-1'><li><span class='detail-stat-title'>Native Name: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].nativeName) +
-      "</span></li><li><span class='detail-stat-title'>Population: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Population: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].population) +
-      "</span></li><li><span class='detail-stat-title'>Region: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Region: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].region) +
-      "</span></li><li><span class='detail-stat-title'>Sub Region: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Sub Region: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].subregion) +
-      "</span></li><li><span class='detail-stat-title'>Capital: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Capital: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].capital) +
-      "</span></li></ul><ul class='detail-stats-list'><li><span class='detail-stat-title'>Top Level Domain: </span><span class='detail-stat-title'>" +
+      "</span></li></ul><ul class='detail-stats-list id='list-2''><li><span class='detail-stat-title'>Top Level Domain: </span><span class='detail-stat-text'>" +
       verifyData(dataStore[index].topLevelDomain) +
-      "</span></li><li><span class='detail-stat-title'>Currencies: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Currencies: </span><span class='detail-stat-text'>" +
       currencies +
-      "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-title'>" +
+      "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-text'>" +
       languages +
       "</span></li></ul></div><div class='detail-border-countries-container'><span class='detail-border-countries-title'>Border Countries:</span>" +
       borderCountries +
-      "</div></div></div></div></div>";
+      "</div></div></div>";
 
     "Country Population " + dataStore[index].population;
   }
