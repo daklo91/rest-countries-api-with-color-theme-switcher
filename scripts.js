@@ -208,6 +208,8 @@ function closeModal() {
 }
 
 window.addEventListener("hashchange", function () {
+  document.body.style.overflow = "visible";
+  // document.body.style.position = "static";
   loadHashFromURL();
 });
 
@@ -247,8 +249,10 @@ function findDataWithHash(hash) {
         getCountryNameByAlphaCode3(dataStore[index].borders[i]) +
         "</button>";
     }
+    document.body.style.overflow = "hidden";
+    // document.body.style.position = "fixed";
     modal.innerHTML =
-      "<button onclick='closeModal()'>Go Back</button>" +
+      "<div id='detail-page-container'><button onclick='closeModal()'>Go Back</button>" +
       "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
       verifyData(dataStore[index].flag) +
       "'></img><div class='detail-stats-main-container'><h1>" +
@@ -271,7 +275,7 @@ function findDataWithHash(hash) {
       languages +
       "</span></li></ul></div><div class='detail-border-countries-container'><span class='detail-border-countries-title'>Border Countries:</span>" +
       borderCountries +
-      "</div></div></div></div>";
+      "</div></div></div></div></div>";
 
     "Country Population " + dataStore[index].population;
   }
