@@ -222,17 +222,30 @@ function findDataWithHash(hash) {
     modal.style.display = "block";
     var currencies = "";
     for (var i = 0; dataStore[index].currencies.length > i; i++) {
-      currencies += "<span>" + dataStore[index].currencies[i].name + "<span>";
+      currencies +=
+        "<span class='detail-stat'>" +
+        dataStore[index].currencies[i].name +
+        "</span>";
       if (dataStore[index].currencies.length - 1 > i) {
         currencies += ", ";
       }
     }
     var languages = "";
     for (var i = 0; dataStore[index].languages.length > i; i++) {
-      languages += "<span>" + dataStore[index].languages[i].name + "<span>";
+      languages +=
+        "<span class='detail-stat'>" +
+        dataStore[index].languages[i].name +
+        "</span>";
       if (dataStore[index].languages.length - 1 > i) {
         languages += ", ";
       }
+    }
+    var borderCountries = "";
+    for (var i = 0; dataStore[index].borders.length > i; i++) {
+      borderCountries +=
+        "<button class='detail-border-country-button'>" +
+        getCountryNameByAlphaCode3(dataStore[index].borders[i]) +
+        "</button>";
     }
     modal.innerHTML =
       "<button onclick='closeModal()'>Go Back</button>" +
@@ -256,7 +269,9 @@ function findDataWithHash(hash) {
       currencies +
       "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-title'>" +
       languages +
-      "</span></li></ul></div></div></div></div>";
+      "</span></li></ul></div><div class='detail-border-countries-container'><span class='detail-border-countries-title'>Border Countries:</span>" +
+      borderCountries +
+      "</div></div></div></div>";
 
     "Country Population " + dataStore[index].population;
   }
@@ -270,4 +285,11 @@ function verifyData(data) {
   } else if (typeof data === "number") {
     return data.toLocaleString();
   } else return data;
+}
+
+function getCountryNameByAlphaCode3(countryAc3) {
+  console.log(countryAc3);
+  var countryName = dataStore.find((index) => index.alpha3Code == countryAc3);
+  console.log(countryName.name);
+  return countryName.name;
 }
