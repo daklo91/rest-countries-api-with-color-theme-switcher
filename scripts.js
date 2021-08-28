@@ -243,16 +243,22 @@ function findDataWithHash(hash) {
       }
     }
     var borderCountries = "";
-    for (var i = 0; dataStore[index].borders.length > i; i++) {
-      borderCountries +=
-        "<button class='detail-border-country-button' onclick='goToBorderCountry(event.target)'>" +
-        getCountryNameByAlphaCode3(dataStore[index].borders[i]) +
-        "</button>";
-    }
+    if (dataStore[index].borders.length < 1) {
+      borderCountries = "<span class='empty-data'> none</span>";
+    } else
+      for (var i = 0; dataStore[index].borders.length > i; i++) {
+        borderCountries +=
+          "<button class='detail-border-country-button' onclick='goToBorderCountry(event.target)'>" +
+          getCountryNameByAlphaCode3(dataStore[index].borders[i]) +
+          "</button>";
+      }
     document.body.style.overflow = "hidden";
     // document.body.style.position = "fixed";
     modal.innerHTML =
-      "<div id='detail-page-container'><button onclick='closeModal()'>Go Back</button>" +
+      "<div id='detail-page-container'>" +
+      "<button onclick='closeModal()'>" +
+      arrowSVG +
+      "Go Back</button>" +
       "<div class='detail-container'><div class='detail-flag-container'><img class='detail-flag' src='" +
       verifyData(dataStore[index].flag) +
       "'></img><div class='detail-stats-main-container'><h1>" +
@@ -280,6 +286,9 @@ function findDataWithHash(hash) {
     "Country Population " + dataStore[index].population;
   }
 }
+
+var arrowSVG =
+  "<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z' fill='#111517'/></svg>";
 
 function goToBorderCountry(event) {
   window.location.href = "#" + event.innerText.toLowerCase();
