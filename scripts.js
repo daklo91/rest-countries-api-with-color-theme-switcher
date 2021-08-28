@@ -25,6 +25,7 @@ function appendData(data) {
     var div = document.createElement("div");
     div.classList.add("country-card");
     div.setAttribute("id", i);
+    // TODO: Trenger å få manipulert denne(under) til å fungere i knappene på border knappene i detail page.
     div.onclick = function (event) {
       window.location.href =
         "#" + data[event.currentTarget.id].name.toLowerCase();
@@ -214,7 +215,6 @@ function findDataWithHash(hash) {
   const index = dataStore.findIndex(
     (data) => data.name.toLowerCase() === decodeURI(hash)
   );
-
   if (index === -1) {
     window.location.href = "#;)";
   } else if (hash != "#;)") {
@@ -243,7 +243,7 @@ function findDataWithHash(hash) {
     var borderCountries = "";
     for (var i = 0; dataStore[index].borders.length > i; i++) {
       borderCountries +=
-        "<button class='detail-border-country-button'>" +
+        "<button class='detail-border-country-button' onclick='goToBorderCountry(event.target)'>" +
         getCountryNameByAlphaCode3(dataStore[index].borders[i]) +
         "</button>";
     }
@@ -277,6 +277,11 @@ function findDataWithHash(hash) {
   }
 }
 
+function goToBorderCountry(event) {
+  window.location.href = "#" + event.innerText.toLowerCase();
+  findDataWithHash(event.innerText.toLowerCase());
+}
+
 function verifyData(data) {
   if (data === "") {
     return "<span class='empty-data'>none</span>";
@@ -288,8 +293,6 @@ function verifyData(data) {
 }
 
 function getCountryNameByAlphaCode3(countryAc3) {
-  console.log(countryAc3);
   var countryName = dataStore.find((index) => index.alpha3Code == countryAc3);
-  console.log(countryName.name);
   return countryName.name;
 }
