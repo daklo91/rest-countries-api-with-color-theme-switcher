@@ -25,7 +25,6 @@ function appendData(data) {
     var div = document.createElement("div");
     div.classList.add("country-card");
     div.setAttribute("id", i);
-    // TODO: Trenger å få manipulert denne(under) til å fungere i knappene på border knappene i detail page.
     div.onclick = function (event) {
       window.location.href =
         "#" + data[event.currentTarget.id].name.toLowerCase();
@@ -259,7 +258,7 @@ function findDataWithHash(hash) {
       "<button id='back-button' onclick='closeModal()'>" +
       arrowSVG +
       "Back</button>" +
-      "<div class='detail-flag-container'><img class='detail-flag' src='" +
+      "<div class='detail-content'><div class='detail-flag-container'><img class='detail-flag' src='" +
       verifyData(dataStore[index].flag) +
       "'></img></div><div class='detail-stats-main-container'><h1 class='detail-page-name'>" +
       verifyData(dataStore[index].name) +
@@ -279,9 +278,13 @@ function findDataWithHash(hash) {
       currencies +
       "</span></li><li><span class='detail-stat-title'>Languages: </span><span class='detail-stat-text'>" +
       languages +
-      "</span></li></ul></div><div class='detail-border-countries-container'><span class='detail-border-countries-title'>Border Countries:</span>" +
+      "</span></li></ul></div><div class='detail-border-countries-container'>" +
+      "<span class='detail-border-countries-title' id='border-title-1'>Border Countries:</span>" +
+      "<div class='detail-border-button-section'>" +
+      "<span class='detail-border-countries-title' id='border-title-2'>Border Countries:</span>" +
       borderCountries +
-      "</div></div></div>";
+      "</div>" +
+      "</div></div></div></div>";
 
     "Country Population " + dataStore[index].population;
   }
