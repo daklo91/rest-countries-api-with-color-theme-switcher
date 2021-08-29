@@ -201,14 +201,13 @@ function loadHashFromURL() {
 
 function closeModal() {
   window.location.href = "#;)";
-  document.getElementById("country-modal").innerHTML = "";
   document.getElementById("country-modal").style.display = "none";
   loadHashFromURL();
 }
 
 window.addEventListener("hashchange", function () {
   document.body.style.overflow = "visible";
-  // document.body.style.position = "static";
+  document.getElementById("country-modal").style.display = "none";
   loadHashFromURL();
 });
 
