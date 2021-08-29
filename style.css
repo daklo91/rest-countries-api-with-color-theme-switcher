@@ -454,6 +454,7 @@ input[type="search"] {
   color: var(--text-color);
   margin-bottom: 65px;
   align-self: flex-start;
+  justify-content: center;
 }
 
 #back-button:hover {
@@ -500,4 +501,118 @@ input[type="search"] {
 .detail-stat-text {
   font-size: 14px;
   font-weight: var(--light-text-weight);
+}
+
+.detail-border-button-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+}
+
+.detail-border-countries-title {
+  font-size: 16px;
+  font-weight: var(--bold-text-weight);
+  line-height: 24px;
+  display: block;
+  margin-bottom: 16px;
+  align-self: flex-end;
+}
+
+.detail-border-country-button {
+  height: 28px;
+  padding: 6px 22px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--element-color);
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.104931);
+  color: var(--text-color);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-border-country-button:hover {
+  background-color: var(--element-hover-color);
+  cursor: pointer;
+}
+
+#border-title-2 {
+  display: none;
+}
+
+@media screen and (min-width: 850px) {
+  .detail-container {
+    width: 85%;
+    padding: 55px 80px 0 80px;
+  }
+
+  #back-button {
+    margin-bottom: 80px;
+    height: 40px;
+    width: 136px;
+    padding: 0;
+    border-radius: 6px;
+  }
+
+  #back-button svg {
+    /* margin-left: 0px; */
+    transform: scale(1.111);
+    font-size: 16px;
+    font-weight: var(--light-text-weight);
+  }
+
+  .detail-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .detail-flag-container {
+    width: 560px;
+    border-radius: 10px;
+    margin-right: 30px;
+  }
+
+  .detail-stats-main-container {
+    width: 598px;
+  }
+
+  .detail-stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .detail-page-name {
+    margin-top: 0;
+    font-size: 32px;
+  }
+
+  .detail-stat-title {
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .detail-stat-text {
+    font-size: 16px;
+  }
+
+  .detail-border-countries-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #border-title-1 {
+    display: none;
+  }
+
+  #border-title-2 {
+    display: block;
+  }
+
+  .detail-border-countries-title {
+    white-space: nowrap;
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
 }
