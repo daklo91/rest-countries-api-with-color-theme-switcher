@@ -1,98 +1,209 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# Frontend Mentor - REST Countries API with color theme switcher solution
 
-![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+I really enjoyed this project and encourage everyone else to code whatever Frontend Mentor has in store.
 
-Thanks for checking out this front-end coding challenge.
+## Table of contents
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-**To do this challenge, you need a good understanding of JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to integrate with the [REST Countries API](https://restcountries.eu) to pull country data and display it like in the designs.
-
-You can use any JavaScript framework/library on the front-end such as [React](https://reactjs.org) or [Vue](https://vuejs.org). You also have complete control over which packages you use to do things like make HTTP requests or style your project.
-
-Your users should be able to:
+Users should be able to:
 
 - See all countries from the API on the homepage
 - Search for a country using an `input` field
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode *(optional)*
+- Toggle the color scheme between light and dark mode _(optional)_
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![](./screenshot.png)
 
-Your task is to build out the project to the designs inside the `/design` folder. 
+### Links
 
-In this challenge, you will find mobile and desktop designs in light and dark mode color schemes for both pages.
+- Live Site URL: [Add live site URL here](https://hvor-i-verden.netlify.app)
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+## My process
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Built with
 
-There are no assets for this challenge, as the country flags will be pulled from the [REST Countries API](https://restcountries.eu) and you can use an icon font library for the icons.
+- Semantic HTML5 markup
+- CSS custom properties
+- FlexBox
+- Mobile-first workflow
+- Pure JS, no frameworks or plugins
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+### What I learned
 
-## Building your project
+Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+This is the first professional website that I have created with just HTML, CSS and JS. I've always used frameworks before so this was a fun challenge.
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+I learned how manipulate elements using JS.
 
-## Deploying your project
+One example is this function, which gets called in the API fetch return. It takes the "country-list" and adds "country-card"'s to it, using the data from the API. It also applies an onclick event which takes the user to the detail-page of the country they clicked on:
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+```js
+function appendData(data) {
+  document.getElementById("country-list").innerHTML = "";
+  var countryCard = document.getElementById("country-list");
+  for (var i = 0; i < data.length; i++) {
+    var div = document.createElement("div");
+    div.classList.add("country-card");
+    div.setAttribute("id", i);
+    div.onclick = function (event) {
+      window.location.href =
+        "#" + data[event.currentTarget.id].name.toLowerCase();
+      findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
+    };
+    div.innerHTML =
+      "<img class='flag' src='" +
+      data[i].flag +
+      "'>" +
+      "<div class='stats-section'><h2 class='name'>" +
+      data[i].name +
+      "</h2>" +
+      "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
+      getPopulation(data, i) +
+      "</span></div>" +
+      "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
+      getRegion(data, i) +
+      "</span></div>" +
+      "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
+      getCapital(data, i) +
+      "</span></div></div>";
+    countryCard.appendChild(div);
+  }
+}
+```
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+Because creating a script that would automatically generate static pages with just JS sounded too cumbersome, I went with going the single page application(SPA) route instead.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+I did this using window.location and hashes (#):
 
-## Create a custom `README.md`
+```js
+function loadHashFromURL() {
+  if (window.location.hash == "") {
+    window.location.href = "#;)";
+  } else if (window.location.hash != "#;)") {
+    var hash = window.location.hash.substring(1);
+    findDataWithHash(hash);
+  }
+}
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+function closeModal() {
+  window.location.href = "#;)";
+  document.getElementById("country-modal").style.display = "none";
+  loadHashFromURL();
+}
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+window.addEventListener("hashchange", function () {
+  document.body.style.overflow = "visible";
+  document.getElementById("country-modal").style.display = "none";
+  loadHashFromURL();
+});
+```
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+The findDataWithHash() function is a big script which uses the inbuilt array.find() function and applies the data it finds to a modal which then gets displayed.
 
-## Submitting your solution
+Also, I didn't need to but I felt I had to create an "autocomplete" function to the search input:
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+```js
+var autoCompleteArray = [];
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+function autocompleteName(event) {
+  event.stopPropagation();
+  document.getElementById("region-menu").style.display = "none";
+  if (document.getElementById("search-focus").value.length > 2) {
+    document.getElementById("autocomplete-modal").style.display = "block";
+  }
+  document
+    .getElementById("search-focus")
+    .addEventListener("input", function () {
+      document.getElementById("autocomplete-modal").innerHTML = "";
+      var value = document.getElementById("search-focus").value.toLowerCase();
+      autoCompleteArray = [];
+      for (var i = 0; i < dataStore.length; i++) {
+        if (value.length < 2) {
+          document.getElementById("autocomplete-modal").style.display = "none";
+        } else if (dataStore[i].name.toLowerCase().startsWith(value)) {
+          document.getElementById("autocomplete-modal").style.display = "block";
+          autoCompleteArray.push(dataStore[i]);
+          var firstSlice = dataStore[i].name.slice(0, value.length);
+          var lastSlice = dataStore[i].name.slice(value.length);
+          document.getElementById("autocomplete-modal").innerHTML +=
+            "<li class='autocomplete-name' onclick='clickToFillInput(" +
+            i +
+            ")'>" +
+            "<strong>" +
+            firstSlice +
+            "</strong>" +
+            lastSlice +
+            "</li>";
+        }
+      }
+    });
+}
+```
 
-## Sharing your solution
+### Continued development
 
-There are multiple places you can share your solution:
+I mentioned that I was new to coding with only JS and it really shows here. Frameworks like Vue is coded in components, so I never really learned how to have good structure and systems in my code, because coding in components naturally does that for me.
+My code here is 100% spaghetti code with added tomato sauce and meat balls. I will be much more careful in the future.
+I have too many classes and divs, and my JS needs a lot of refactoring, but I'd rather start a new project right now instead of going back to my mess.
+Maybe I will clean it up someday ...
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+HTML semantics is something that I will learn and use on my next project. It is not necessary, there are professional who use divs only, but I think semantics not only help screen reader, but it helps people (and me), read my code easier.
+Example:
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+```html
+<header>
+  <h1>Cool Logo</h1>
+  <nav>
+    <ul class="nav-links">
+      <li class="navbar-link">About</li>
+      <li class="navbar-link">Contact</li>
+      <li class="navbar-link">Content</li>
+      <li class="navbar-link">Etc</li>
+    </ul>
+  </nav>
+</header>
+```
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+Instead of:
 
-## Got feedback for us?
+```html
+<div class="header">
+  <h1>Cool Logo</h1>
+  <div class="navbar">
+    <div class="nav-links">
+      <div class="navbar-link">About</div>
+      <div class="navbar-link">Contact</div>
+      <div class="navbar-link">Content</div>
+      <div class="navbar-link">Etc</div>
+    </div>
+  </div>
+</div>
+```
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+Needs a tags but you get the point.
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+I also started learning how to add better commits on github. I imagine it will be very useful when I start working with colleagues.
 
-**Have fun building!** 🚀
+## Author
+
+- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/daklo91)
