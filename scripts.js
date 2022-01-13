@@ -4,7 +4,7 @@ document.documentElement.setAttribute("data-theme", "light");
 
 var dataStore = "";
 
-fetch("https://restcountries.eu/rest/v2/all")
+fetch("https://restcountries.com/rest/v2/all")
   .then(function (response) {
     return response.json();
   })
