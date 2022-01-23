@@ -1,5 +1,13 @@
 //* PAGE-LOAD Scripts
+
 var dataStore = "";
+
+if (localStorage.getItem("theme")) {
+  document.documentElement.setAttribute(
+    "data-theme",
+    localStorage.getItem("theme")
+  );
+}
 
 fetch("https://restcountries.com/v2/all")
   .then(function (response) {
@@ -85,8 +93,10 @@ function switchTheme() {
   darkMode = !darkMode;
   if (darkMode === true) {
     document.documentElement.setAttribute("data-theme", "dark");
+    window.localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
+    window.localStorage.setItem("theme", "light");
   }
 }
 
