@@ -1,7 +1,4 @@
 //* PAGE-LOAD Scripts
-
-document.documentElement.setAttribute("data-theme", "light");
-
 var dataStore = "";
 
 fetch("https://restcountries.com/v2/all")
@@ -12,26 +9,28 @@ fetch("https://restcountries.com/v2/all")
     dataStore = data;
     appendData(data);
     loadHashFromURL();
-    console.log(dataStore[0]);
   })
   .catch(function (err) {
     console.log(err);
   });
 
+// This function updates the country-list
 function appendData(data) {
-  document.getElementById("country-list").innerHTML = "";
-  var countryCard = document.getElementById("country-list");
+  // Reset list to make it ready for new data
+  var countryList = document.getElementById("country-list");
+  countryList.innerHTML = "";
+
+  // Create countryCard
   for (var i = 0; i < data.length; i++) {
-    var div = document.createElement("div");
-    div.classList.add("country-card");
-    div.setAttribute("id", i);
-    div.onclick = function (event) {
+    var countryCard = document.createElement("div");
+    countryCard.classList.add("country-card");
+    countryCard.setAttribute("id", i);
+    countryCard.onclick = function (event) {
       window.location.href =
         "#" + data[event.currentTarget.id].name.toLowerCase();
-      // console.log(data[event.currentTarget.id].name.toLowerCase());
       findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
     };
-    div.innerHTML =
+    countryCard.innerHTML =
       "<img class='flag' src='" +
       data[i].flag +
       "'>" +
@@ -47,10 +46,11 @@ function appendData(data) {
       "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
       getCapital(data, i) +
       "</span></div></div>";
-    countryCard.appendChild(div);
+    countryList.appendChild(countryCard);
   }
 }
 
+// These functions makes it so the card will display "none" if any field is empty
 function getPopulation(data, i) {
   if (data[i].population === 0) {
     return "<span class='empty-data'>none</span>";
@@ -62,7 +62,7 @@ function getRegion(data, i) {
   } else return data[i].region;
 }
 function getCapital(data, i) {
-  if (data[i].capital === "") {
+  if (!data[i].capital) {
     return "<span class='empty-data'>none</span>";
   } else return data[i].capital;
 }
@@ -94,9 +94,14 @@ function switchTheme() {
 
 function expandRegionMenu(event) {
   event.stopPropagation();
+
+  // Close the autocomplete dropdown when clicked region dropdown is clicked
   document.getElementById("autocomplete-modal").style.display = "none";
+
   var menu = document.getElementById("region-menu");
   var activator = document.getElementById("menu-activator");
+
+  // Makes the user able to "toggle" the dropdown by clicking it again
   if (menu.style.display === "block") {
     menu.style.display = "none";
     activator.blur();
@@ -111,18 +116,20 @@ function filterByRegion(region) {
 
 //* INPUT Scripts
 
+var autoCompleteArray = [];
+
+// Takes the input value and appends the matching data
 function getInputValue() {
   var value = document.getElementById("search-focus").value;
-  value = value.toLowerCase();
-  value = value.charAt(0).toUpperCase() + value.slice(1);
-  const result = dataStore.filter((d) => d.name == value);
-  if (result.length == 1) {
+  const result = dataStore.filter((d) => d.name === value);
+  if (result.length === 1) {
     appendData(result);
-  } else if (result.length == 0 && autoCompleteArray.length > 0) {
+  } else if (result.length === 0 && autoCompleteArray.length > 0) {
     appendData(autoCompleteArray);
-  } else if (result.length == 0 && autoCompleteArray.length == 0) {
+  } else if (result.length === 0 && autoCompleteArray.length === 0) {
     console.log("no country by that name :(");
   }
+  // Reset everything
   autoCompleteArray = [];
   document.getElementById("search-focus").blur();
   document.getElementById("search-focus").value = "";
@@ -131,41 +138,46 @@ function getInputValue() {
   document.getElementById("menu-activator").innerText = "Filter by Region";
 }
 
-var autoCompleteArray = [];
-
-function autocompleteName(event) {
+function onInputClick(event) {
   event.stopPropagation();
+
+  // Close region menu when search input is clicked
   document.getElementById("region-menu").style.display = "none";
+
+  // If search input has more than two characters, display autocomplete-modal
   if (document.getElementById("search-focus").value.length > 2) {
     document.getElementById("autocomplete-modal").style.display = "block";
   }
-  document
-    .getElementById("search-focus")
-    .addEventListener("input", function () {
-      document.getElementById("autocomplete-modal").innerHTML = "";
-      var value = document.getElementById("search-focus").value.toLowerCase();
-      autoCompleteArray = [];
-      for (var i = 0; i < dataStore.length; i++) {
-        if (value.length < 2) {
-          document.getElementById("autocomplete-modal").style.display = "none";
-        } else if (dataStore[i].name.toLowerCase().startsWith(value)) {
-          document.getElementById("autocomplete-modal").style.display = "block";
-          autoCompleteArray.push(dataStore[i]);
-          var firstSlice = dataStore[i].name.slice(0, value.length);
-          var lastSlice = dataStore[i].name.slice(value.length);
-          document.getElementById("autocomplete-modal").innerHTML +=
-            "<li class='autocomplete-name' onclick='clickToFillInput(" +
-            i +
-            ")'>" +
-            "<strong>" +
-            firstSlice +
-            "</strong>" +
-            lastSlice +
-            "</li>";
-        }
-      }
-    });
 }
+
+const onInputChange = () => {
+  document.getElementById("autocomplete-modal").innerHTML = "";
+  var value = document.getElementById("search-focus").value.toLowerCase();
+  autoCompleteArray = [];
+  // Loop through the whole dataStore (country list)
+  for (var i = 0; i < dataStore.length; i++) {
+    // If search input has less than two characters, do NOT display autocomplete-modal
+    if (value.length < 2) {
+      document.getElementById("autocomplete-modal").style.display = "none";
+      // Check if dataStore[i] matches the input value. Push data into autcompleteArray for if true
+    } else if (dataStore[i].name.toLowerCase().startsWith(value)) {
+      document.getElementById("autocomplete-modal").style.display = "block";
+      autoCompleteArray.push(dataStore[i]);
+      // Make the matching letters bold
+      var firstSlice = dataStore[i].name.slice(0, value.length);
+      var lastSlice = dataStore[i].name.slice(value.length);
+      document.getElementById("autocomplete-modal").innerHTML +=
+        "<li class='autocomplete-name' onclick='clickToFillInput(" +
+        i +
+        ")'>" +
+        "<strong>" +
+        firstSlice +
+        "</strong>" +
+        lastSlice +
+        "</li>";
+    }
+  }
+};
 
 function clickToFillInput(i) {
   document.getElementById("search-focus").value = "";
@@ -176,20 +188,9 @@ function clickToFillInput(i) {
   autoCompleteArray = [];
 }
 
-function hideShowModal() {
-  if (
-    document.activeElement === document.getElementById("search-focus") &&
-    autoCompleteArray.length > 0
-  ) {
-    document.getElementById("autocomplete-modal").style.display = "block";
-  } else
-    setTimeout(function () {
-      document.getElementById("autocomplete-modal").style.display = "none";
-    }, 150);
-}
+//* NAVIGATE TO NEW ROUTE
 
-// NAVIGATE TO NEW ROUTE
-
+// If URL is blank, add #;) else try to find country in the URL
 function loadHashFromURL() {
   if (window.location.hash == "") {
     window.location.href = "#;)";
@@ -199,17 +200,17 @@ function loadHashFromURL() {
   }
 }
 
+// run code above on every hashchange
+window.addEventListener("hashchange", function () {
+  document.body.style.overflow = "visible";
+  loadHashFromURL();
+});
+
+// reset URL when closing modal
 function closeModal() {
   window.location.href = "#;)";
   document.getElementById("country-modal").style.display = "none";
-  loadHashFromURL();
 }
-
-window.addEventListener("hashchange", function () {
-  document.body.style.overflow = "visible";
-  document.getElementById("country-modal").style.display = "none";
-  loadHashFromURL();
-});
 
 function findDataWithHash(hash) {
   const index = dataStore.findIndex(
@@ -217,17 +218,20 @@ function findDataWithHash(hash) {
   );
   if (index === -1) {
     window.location.href = "#;)";
-  } else if (hash != "#;)") {
+  } else if (hash !== "#;)") {
     var modal = document.getElementById("country-modal");
     modal.style.display = "block";
     var currencies = "";
-    for (var i = 0; dataStore[index].currencies.length > i; i++) {
-      currencies +=
-        "<span class='detail-stat'>" +
-        dataStore[index].currencies[i].name +
-        "</span>";
-      if (dataStore[index].currencies.length - 1 > i) {
-        currencies += ", ";
+    if (!dataStore[index].currencies) {
+    } else if (dataStore[index].currencies) {
+      for (var i = 0; dataStore[index].currencies.length > i; i++) {
+        currencies +=
+          "<span class='detail-stat'>" +
+          dataStore[index].currencies[i].name +
+          "</span>";
+        if (dataStore[index].currencies.length - 1 > i) {
+          currencies += ", ";
+        }
       }
     }
     var languages = "";
@@ -241,7 +245,7 @@ function findDataWithHash(hash) {
       }
     }
     var borderCountries = "";
-    if (dataStore[index].borders.length < 1) {
+    if (!dataStore[index].borders) {
       borderCountries = "<span class='empty-data'> none</span>";
     } else
       for (var i = 0; dataStore[index].borders.length > i; i++) {
@@ -251,7 +255,6 @@ function findDataWithHash(hash) {
           "</button>";
       }
     document.body.style.overflow = "hidden";
-    // document.body.style.position = "fixed";
     modal.innerHTML =
       "<div class='detail-container'>" +
       "<button id='back-button' onclick='closeModal()'>" +
@@ -298,7 +301,7 @@ function goToBorderCountry(event) {
 }
 
 function verifyData(data) {
-  if (data === "") {
+  if (data === undefined) {
     return "<span class='empty-data'>none</span>";
   } else if (data === 0) {
     return "<span class='empty-data'>none</span>";

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,9 +9,8 @@
     <script src="scripts.js"></script>
   </head>
   <body>
-    <!-- TODO: Add better semantics -->
-    <div id="country-modal"></div>
-    <div class="header">
+    <article id="country-modal"></article>
+    <header class="header">
       <div class="header-container">
         <h1 class="title" onclick="window.location = '/';">
           Where in the world?
@@ -36,13 +35,13 @@
           <p class="dark-mode-text">Dark Mode</p>
         </div>
       </div>
-    </div>
+    </header>
 
-    <div class="container">
+    <main class="container">
       <div class="content">
-        <div class="search-and-dropdown-header">
+        <section class="search-and-dropdown-header">
           <label for="search-focus" id="search-box">
-            <div class="search-container" onclick="autocompleteName(event)">
+            <div class="search-container" onclick="onInputClick(event)">
               <svg
                 onclick="getInputValue()"
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +62,7 @@
                 id="search-focus"
                 type="search"
                 placeholder="Search for a country…"
-                onblur="this.placeholder = 'Search for a country…'"
+                onkeyup="onInputChange()"
               />
             </div>
             <div id="autocomplete-modal"></div>
@@ -128,10 +127,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
         <!-- V content from api here V -->
-        <div id="country-list-container"><div id="country-list"></div></div>
+        <section id="country-list-container">
+          <div id="country-list"></div>
+        </section>
       </div>
-    </div>
+    </main>
   </body>
 </html>
