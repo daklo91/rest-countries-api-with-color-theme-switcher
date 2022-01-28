@@ -1,0 +1,14 @@
+@use "./src/scss/theme";
+@use "./src/components/Header/DarkMode";
+@use "./src/components/Header/Header";
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./src/assets/NunitoSans-Regular.ttf");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+}

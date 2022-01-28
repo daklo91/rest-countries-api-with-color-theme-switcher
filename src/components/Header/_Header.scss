@@ -1,0 +1,6 @@
+@use "../../scss/theme";
+
+header {
+  background-color: theme.$background-color;
+  color: red;
+}

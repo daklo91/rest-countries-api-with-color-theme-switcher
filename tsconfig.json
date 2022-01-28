@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "strictNullChecks": true,
+    "outFile": "./script.js"
+  },
+  "plugins": [
+    {
+      "name": "typescript-lit-html-plugin",
+      "tags": ["html", "template"]
+    }
+  ],
+  "files": [
+    "src/components/Header/DarkMode.ts",
+    "src/components/Header/Header.ts"
+  ]
+}
