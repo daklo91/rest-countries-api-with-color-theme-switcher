@@ -1,7 +1,5 @@
 // CLI Command: sass --watch . --no-source-map --style=compressed
 
-@use "./src/scss/theme";
-@use "./src/scss/transition";
 @use "./src/components/Header/DarkMode";
 @use "./src/components/Header/Header";
 
