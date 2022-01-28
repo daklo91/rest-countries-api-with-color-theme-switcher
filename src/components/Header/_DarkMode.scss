@@ -1,4 +1,5 @@
 @use "../../scss/theme";
+@use "../../scss/transition";
 
 .dark-mode-button {
   border: 0;
@@ -9,7 +10,6 @@
   align-items: center;
   background-color: theme.$element-color;
   color: theme.$text-color;
-  transition: background-color 0.3s;
 
   .dark-mode-text {
     display: block;
@@ -49,5 +49,5 @@
 }
 
 .dark-mode-button:hover {
-  background-color: theme.$element-hover-color;
+  @include transition.elementHover;
 }
