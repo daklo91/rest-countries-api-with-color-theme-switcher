@@ -1,8 +1,8 @@
 const header = (): string => {
   return /* html */ `
   <header>
-    <h1>Where in the world?</h1>
-    ${darkModeIcon}
+    <h1 class="logo">Where in the world?</h1>
+    ${darkModeButton}
   </header>`;
 };
 

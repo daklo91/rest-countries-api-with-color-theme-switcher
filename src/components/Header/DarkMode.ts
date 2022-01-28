@@ -15,7 +15,7 @@ const toggleTheme = () => {
   }
 };
 
-const darkModeIcon: string = /* html */ `
+const darkModeButton: string = /* html */ `
 <button class="dark-mode-button" onclick="toggleTheme()">
   <svg
     class="dark-mode-icon"
