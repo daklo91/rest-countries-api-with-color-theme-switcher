@@ -33,7 +33,11 @@
   }
 }
 
-@media screen and (min-width: 500px) {
+.dark-mode-button:hover {
+  background-color: theme.$element-hover-color;
+}
+
+@media screen and (min-width: 475px) {
   .dark-mode-button {
     padding: rem(10);
     margin-right: 70px;
@@ -53,6 +57,8 @@
   }
 }
 
-.dark-mode-button:hover {
-  background-color: theme.$element-hover-color;
+@media screen and (max-width: 700px) {
+  .dark-mode-button {
+    margin-right: 10px;
+  }
 }
