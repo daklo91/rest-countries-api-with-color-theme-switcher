@@ -16,7 +16,7 @@ const toggleTheme = () => {
 };
 
 const darkModeButton: string = /* html */ `
-<button class="dark-mode-button" onclick="toggleTheme()">
+<button class="dark-mode-button" onclick="toggleTheme()" aria-label="dark mode toggle">
   <svg
     class="dark-mode-icon"
     width="16"
