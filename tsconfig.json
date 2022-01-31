@@ -13,6 +13,8 @@
   ],
   "files": [
     "src/components/Header/DarkMode.ts",
-    "src/components/Header/Header.ts"
+    "src/components/Header/Header.ts",
+    "src/components/CountryList/FetchCountries.ts",
+    "src/components/CountryList/CountryList.ts"
   ]
 }

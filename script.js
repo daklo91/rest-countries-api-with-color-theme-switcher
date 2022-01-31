@@ -18,3 +18,18 @@ var header = function () {
     return "\n  <header>\n    <a href=\"/\" aria-label=\"go to homepage\"><h1 class=\"logo\">Where in the world?</h1></a>\n    ".concat(darkModeButton, "\n  </header>");
 };
 document.body.insertAdjacentHTML("afterbegin", header());
+var fetchCountryURL = "https://restcountries.com/v3.1/all";
+var countries = [];
+fetch(fetchCountryURL)
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+    return data.map(function (object) {
+        countries.push({
+            name: object.name.common,
+            population: object.population
+        });
+    });
+})
+    .then(console.log(countries));
+var countryList = "\n  <ul id=\"country-list\">\n    \n  </ul>\n";
+document.body.insertAdjacentHTML("beforeend", countryList);
