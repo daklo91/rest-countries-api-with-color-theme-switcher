@@ -1,0 +1,18 @@
+// CLI Command: sass --watch . --no-source-map --style=compressed
+
+@use "./sass/header";
+@use "./sass/darkMode";
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("./assets/NunitoSans-Regular.ttf");
+}
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}

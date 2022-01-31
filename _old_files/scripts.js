@@ -1,79 +1,79 @@
 //* PAGE-LOAD Scripts
 
-var dataStore = "";
+// var dataStore = "";
 
-if (localStorage.getItem("theme")) {
-  document.documentElement.setAttribute(
-    "data-theme",
-    localStorage.getItem("theme")
-  );
-}
+// if (localStorage.getItem("theme")) {
+//   document.documentElement.setAttribute(
+//     "data-theme",
+//     localStorage.getItem("theme")
+//   );
+// }
 
-fetch("https://restcountries.com/v2/all")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    dataStore = data;
-    appendData(data);
-    loadHashFromURL();
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+// fetch("https://restcountries.com/v2/all")
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     dataStore = data;
+//     appendData(data);
+//     loadHashFromURL();
+//   })
+//   .catch(function (err) {
+//     console.log(err);
+//   });
 
-// This function updates the country-list
-function appendData(data) {
-  // Reset list to make it ready for new data
-  var countryList = document.getElementById("country-list");
-  countryList.innerHTML = "";
+// // This function updates the country-list
+// function appendData(data) {
+//   // Reset list to make it ready for new data
+//   var countryList = document.getElementById("country-list");
+//   countryList.innerHTML = "";
 
-  // Create countryCard
-  for (var i = 0; i < data.length; i++) {
-    var countryCard = document.createElement("div");
-    countryCard.classList.add("country-card");
-    countryCard.setAttribute("id", i);
-    countryCard.onclick = function (event) {
-      window.location.href =
-        "#" + data[event.currentTarget.id].name.toLowerCase();
-      findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
-    };
-    countryCard.innerHTML =
-      "<img class='flag' src='" +
-      data[i].flag +
-      "'>" +
-      "<div class='stats-section'><h2 class='name'>" +
-      data[i].name +
-      "</h2>" +
-      "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      getPopulation(data, i) +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
-      getRegion(data, i) +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
-      getCapital(data, i) +
-      "</span></div></div>";
-    countryList.appendChild(countryCard);
-  }
-}
+//   // Create countryCard
+//   for (var i = 0; i < data.length; i++) {
+//     var countryCard = document.createElement("div");
+//     countryCard.classList.add("country-card");
+//     countryCard.setAttribute("id", i);
+//     countryCard.onclick = function (event) {
+//       window.location.href =
+//         "#" + data[event.currentTarget.id].name.toLowerCase();
+//       findDataWithHash(data[event.currentTarget.id].name.toLowerCase());
+//     };
+//     countryCard.innerHTML =
+//       "<img class='flag' src='" +
+//       data[i].flag +
+//       "'>" +
+//       "<div class='stats-section'><h2 class='name'>" +
+//       data[i].name +
+//       "</h2>" +
+//       "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
+//       getPopulation(data, i) +
+//       "</span></div>" +
+//       "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
+//       getRegion(data, i) +
+//       "</span></div>" +
+//       "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
+//       getCapital(data, i) +
+//       "</span></div></div>";
+//     countryList.appendChild(countryCard);
+//   }
+// }
 
-// These functions makes it so the card will display "none" if any field is empty
-function getPopulation(data, i) {
-  if (data[i].population === 0) {
-    return "<span class='empty-data'>none</span>";
-  } else return data[i].population.toLocaleString();
-}
-function getRegion(data, i) {
-  if (data[i].region === "") {
-    return "<span class='empty-data'>none</span>";
-  } else return data[i].region;
-}
-function getCapital(data, i) {
-  if (!data[i].capital) {
-    return "<span class='empty-data'>none</span>";
-  } else return data[i].capital;
-}
+// // These functions makes it so the card will display "none" if any field is empty
+// function getPopulation(data, i) {
+//   if (data[i].population === 0) {
+//     return "<span class='empty-data'>none</span>";
+//   } else return data[i].population.toLocaleString();
+// }
+// function getRegion(data, i) {
+//   if (data[i].region === "") {
+//     return "<span class='empty-data'>none</span>";
+//   } else return data[i].region;
+// }
+// function getCapital(data, i) {
+//   if (!data[i].capital) {
+//     return "<span class='empty-data'>none</span>";
+//   } else return data[i].capital;
+// }
 
 // -- Close menus when click on window
 window.onclick = function () {

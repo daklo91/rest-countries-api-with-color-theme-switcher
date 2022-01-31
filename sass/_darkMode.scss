@@ -1,0 +1,64 @@
+@use "./variables/theme";
+@use "./variables/transition";
+@use "./variables/function" as *;
+
+.dark-mode-button {
+  border: 0;
+  border-radius: rem(5);
+  padding: rem(8);
+  margin-right: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: theme.$element-color;
+  color: theme.$text-color;
+  white-space: nowrap;
+  @include transition.elementHover;
+
+  .dark-mode-text {
+    display: block;
+    margin-top: rem(2);
+    margin-left: rem(8);
+    font-weight: 600;
+    font-size: rem(12);
+    line-height: rem(16);
+  }
+
+  .dark-mode-icon {
+    path {
+      fill: theme.$svg-fill-color;
+      stroke: theme.$svg-stroke-color;
+      stroke-width: 1px;
+    }
+  }
+}
+
+.dark-mode-button:hover {
+  background-color: theme.$element-hover-color;
+}
+
+@media screen and (min-width: 475px) {
+  .dark-mode-button {
+    padding: rem(10);
+    margin-right: 70px;
+
+    .dark-mode-text {
+      font-size: rem(16);
+    }
+
+    .dark-mode-icon {
+      width: rem(20);
+      height: rem(20);
+
+      path {
+        stroke-width: 1.25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .dark-mode-button {
+    margin-right: 10px;
+  }
+}
