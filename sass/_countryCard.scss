@@ -1,0 +1,51 @@
+@use "./variables/theme";
+@use "./variables/transition";
+@use "./variables/function" as *;
+
+.country-card {
+  width: rem(264);
+  margin-top: 40px;
+  background-color: theme.$element-color;
+  color: theme.$text-color;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
+  transition: 0.11s;
+
+  .flag {
+    width: 100%;
+  }
+
+  .info-container {
+    padding: 0 rem(24);
+    margin-bottom: rem(46);
+
+    .country-name {
+      font-size: rem(18);
+      margin-top: rem(24);
+      margin-bottom: rem(16);
+      font-weight: 800;
+    }
+
+    .stats-title {
+      font-size: rem(14);
+      font-weight: 600;
+      margin-bottom: rem(6);
+    }
+
+    .stats {
+      font-size: rem(14);
+      font-weight: 300;
+    }
+  }
+}
+
+.country-card:hover {
+  background-color: theme.$element-hover-color;
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.empty-data {
+  color: gray;
+}
