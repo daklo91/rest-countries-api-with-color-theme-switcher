@@ -13,7 +13,7 @@
   background-color: theme.$element-color;
   color: theme.$text-color;
   white-space: nowrap;
-  @include transition.elementHover;
+  transition: background-color transition.$time;
 
   .dark-mode-text {
     display: block;

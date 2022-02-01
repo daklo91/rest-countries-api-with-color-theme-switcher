@@ -8,6 +8,7 @@ header {
   justify-content: space-between;
   align-items: center;
   min-height: 80px;
+  transition: background-color transition.$time;
 
   a {
     text-decoration: none;
@@ -21,8 +22,8 @@ header {
       margin-left: 8px;
       padding: rem(8);
       border-radius: rem(5);
-      @include transition.elementHover;
       white-space: nowrap;
+      transition: background-color transition.$time;
     }
 
     @media screen and (min-width: 475px) {
