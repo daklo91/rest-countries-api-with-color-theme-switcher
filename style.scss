@@ -1,5 +1,7 @@
 // CLI Command: sass --watch . --no-source-map --style=compressed
 
+@use "./sass/variables/theme";
+@use "./sass/variables/transition";
 @use "./sass/header";
 @use "./sass/darkMode";
 @use "./sass/countryCard";
@@ -16,4 +18,6 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: theme.$background-color;
+  transition: transition.$time;
 }
