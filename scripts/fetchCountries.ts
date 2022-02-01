@@ -17,23 +17,24 @@ fetch("https://restcountries.com/v2/all")
   .then((countries: Countries) => {
     // console.log(countries);
     // loadHashFromURL();
-    appendData(countries);
+    appendCountries(countries);
   })
   .catch((err) => {
     console.log(err);
   });
 
-type Country = {
-  name: string;
-};
+// type Country = {
+//   name: string;
+// };
 
-const appendData = (countries: Countries) => {
+const appendCountries = (countries: Countries) => {
   console.log(countries);
   let countryList = document.getElementById("country-list");
-  countryList.innerHTML = "";
+  // console.log(countryList);
+  // countryList.innerHTML = "";
 
   countries.map((country) => {
-    var countryCard = document.createElement("div");
+    var countryCard = document.createElement("li");
     countryCard.classList.add("country-card");
     // countryCard.setAttribute("id", index);
     // countryCard.onclick = function (event) {
@@ -41,27 +42,27 @@ const appendData = (countries: Countries) => {
     //     "#" + countries[event.currentTarget.id].name.toLowerCase();
     //   findDataWithHash(countries[event.currentTarget.id].name.toLowerCase());
     // };
-    countryCard.innerHTML =
-      "<img class='flag' src='" +
-      country.flag +
-      "'>" +
-      "<div class='stats-section'><h2 class='name'>" +
-      country.name +
-      "</h2>" +
-      "<div class='stats-wrap'><span class='stats-title' id='population-title'>Population: </span><span class='stats' id='population'>" +
-      getPopulation(country.population) +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='region-title'>Region: </span><span class='stats' id='region'>" +
-      getRegion(country.region) +
-      "</span></div>" +
-      "<div class='stats-wrap'><span class='stats-title' id='capital-title'>Capital: </span><span class='stats' id='capital'>" +
-      getCapital(country.capital) +
-      "</span></div></div>";
-    countryList.appendChild(countryCard);
+    countryCard.innerHTML = /* html */ `
+    <img class="flag" src="${country.flag}" alt="The flag of ${country.name}">
+    <div class='info-container'>
+      <h2 class='country-name'>${country.name}</h2>
+        <div class='stats-title'>Population: <span class='stats'>${getPopulation(
+          country.population
+        )}</span></div>
+        <div class='stats-title'>Region: <span class='stats'>${getRegion(
+          country.region
+        )}</span></div>
+        <div class='stats-title'>Capital: <span class='stats'>${getCapital(
+          country.capital
+        )}</span></div>
+    </div>`;
+
+    if (countryList === null) {
+      console.log("CountryList is null");
+    } else countryList.appendChild(countryCard);
   });
 };
 
-// These functions makes it so the card will display "none" if any field is empty
 const getPopulation = (population: number) => {
   if (population === 0) {
     return "<span class='empty-data'>none</span>";
@@ -73,7 +74,7 @@ const getRegion = (region: string) => {
   } else return region;
 };
 const getCapital = (capital: string) => {
-  if (capital) {
+  if (!capital) {
     return "<span class='empty-data'>none</span>";
   } else return capital;
 };
