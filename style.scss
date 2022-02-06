@@ -6,6 +6,7 @@
 @use "./sass/darkMode";
 @use "./sass/countryCard";
 @use "./sass/countryList";
+@use "./sass/searchCountry";
 
 @font-face {
   font-family: "Nunito Sans";
@@ -21,4 +22,5 @@ body {
   margin: 0;
   background-color: theme.$background-color;
   transition: transition.$time;
+  caret-color: theme.$text-color;
 }
