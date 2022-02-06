@@ -6,7 +6,7 @@ header {
   background-color: theme.$element-color;
   transition: background-color transition.$time;
 
-  .container {
+  .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
