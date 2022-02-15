@@ -3,7 +3,7 @@
 @use "./variables/transition";
 
 #search-suggestion {
-  // display: none;
+  display: none;
   position: absolute;
   background-color: theme.$element-color;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
@@ -40,12 +40,8 @@
 
 .search-container:focus-within {
   #search-suggestion {
-    // display: block;
+    display: block;
   }
-}
-
-#search-suggestion:focus {
-  display: block;
 }
 
 @media screen and (min-width: 475px) {
