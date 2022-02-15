@@ -1,47 +1,33 @@
-// let countries: object[] = [{}];
+type Countries = {
+  name: string;
+  flag: string;
+  population: number;
+  region: string;
+  capital: string;
+}[];
 
-type Countries = [
-  {
-    name: string;
-    flag: string;
-    population: number;
-    region: string;
-    capital: string;
-  }
-];
+let countries: Countries;
 
 fetch("https://restcountries.com/v2/all")
   .then((response) => {
     return response.json();
   })
-  .then((countries: Countries) => {
-    // console.log(countries);
-    // loadHashFromURL();
+  .then((data: Countries) => {
+    countries = data;
     appendCountries(countries);
   })
   .catch((err) => {
     console.log(err);
   });
 
-// type Country = {
-//   name: string;
-// };
-
 const appendCountries = (countries: Countries) => {
   console.log(countries);
-  let countryList = document.getElementById("country-list");
-  // console.log(countryList);
-  // countryList.innerHTML = "";
+  let countryList = <HTMLInputElement>document.getElementById("country-list");
+  countryList.innerHTML = "";
 
   countries.map((country) => {
     var countryCard = document.createElement("li");
     countryCard.classList.add("country-card");
-    // countryCard.setAttribute("id", index);
-    // countryCard.onclick = function (event) {
-    //   window.location.href =
-    //     "#" + countries[event.currentTarget.id].name.toLowerCase();
-    //   findDataWithHash(countries[event.currentTarget.id].name.toLowerCase());
-    // };
     countryCard.innerHTML = /* html */ `
     <img class="flag" src="${country.flag}" alt="The flag of ${country.name}">
     <div class='info-container'>
@@ -57,9 +43,7 @@ const appendCountries = (countries: Countries) => {
         )}</span></div>
     </div>`;
 
-    if (countryList === null) {
-      console.log("CountryList is null");
-    } else countryList.appendChild(countryCard);
+    countryList.appendChild(countryCard);
   });
 };
 
