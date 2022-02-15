@@ -6,7 +6,8 @@
 @use "./sass/darkMode";
 @use "./sass/countryCard";
 @use "./sass/countryList";
-@use "./sass/searchCountry";
+@use "./sass/searchInput";
+@use "./sass/searchSuggestion";
 
 @font-face {
   font-family: "Nunito Sans";
