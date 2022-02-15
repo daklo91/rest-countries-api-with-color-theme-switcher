@@ -3,7 +3,8 @@
     "noImplicitAny": true,
     "removeComments": true,
     "strictNullChecks": true,
-    "outFile": "./script.js"
+    "outFile": "./script.js",
+    "sourceMap": true
   },
   "plugins": [
     {
@@ -11,5 +12,9 @@
       "tags": ["html", "template"]
     }
   ],
-  "files": ["scripts/darkMode.ts", "scripts/fetchCountries.ts"]
+  "files": [
+    "scripts/darkMode.ts",
+    "scripts/fetchCountries.ts",
+    "scripts/searchBox.ts"
+  ]
 }
