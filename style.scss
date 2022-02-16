@@ -1,4 +1,4 @@
-// CLI Command: sass --watch . --no-source-map --style=compressed
+// CLI Command: sass --watch . --style=compressed
 
 @use "./sass/variables/theme";
 @use "./sass/variables/transition";
@@ -8,6 +8,8 @@
 @use "./sass/countryList";
 @use "./sass/searchInput";
 @use "./sass/searchSuggestion";
+@use "./sass/regionMenu";
+@use "./sass/main";
 
 @font-face {
   font-family: "Nunito Sans";
