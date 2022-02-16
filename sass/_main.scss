@@ -1,0 +1,13 @@
+.region-and-search-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: auto;
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 900px) {
+  .region-and-search-container {
+    flex-direction: column;
+  }
+}

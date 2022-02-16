@@ -1,0 +1,98 @@
+@use "./variables/theme";
+@use "./variables/transition";
+@use "./variables/function" as *;
+
+.region-menu-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 5%;
+
+  #region-menu-button {
+    background-color: theme.$element-color;
+    color: theme.$text-color;
+    width: 156px;
+    height: 48px;
+    padding-left: 24px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
+    line-height: 48px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    font-size: rem(14);
+
+    .region-menu-arrow {
+      path {
+        fill: theme.$text-color;
+      }
+    }
+  }
+
+  #region-menu-button:hover {
+    background-color: theme.$element-hover-color;
+  }
+
+  #region-menu {
+    display: none;
+    padding: 16px 0 16px 0;
+    position: absolute;
+    background-color: theme.$element-color;
+    width: 200px;
+    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
+    border-radius: 5px;
+    margin-top: 53px;
+    line-height: 30px;
+
+    .region-menu-items {
+      color: theme.$text-color;
+      padding-left: 24px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      font-size: rem(14);
+    }
+
+    .region-menu-items:hover {
+      background-color: theme.$element-hover-color;
+    }
+
+    .region-menu-items:focus {
+      background-color: theme.$element-hover-color;
+    }
+  }
+}
+
+.region-menu-container:focus-within {
+  #region-menu {
+    display: block;
+  }
+
+  .region-menu-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .region-menu-container {
+    margin: 40px 0 0 80px;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .region-menu-container {
+    margin: 40px 80px 0 0;
+  }
+}
