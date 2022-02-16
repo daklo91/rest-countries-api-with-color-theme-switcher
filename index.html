@@ -7,8 +7,6 @@
     <title>Where in the world?</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
-    <!-- <link rel="stylesheet" href="./_old_files/style.css" />
-    <script src="./_old_files/scripts.js"></script> -->
   </head>
   <body>
     <article id="country-modal"></article>
@@ -46,104 +44,99 @@
     </header>
 
     <main>
-      <form class="search-container" onsubmit="searchCountry(event)">
-        <div class="search-input-container">
-          <!-- <svg
-            onclick="getInputValue()"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            class="search-icon"
-            height="16"
-            viewBox="2 2 18 18"
-          >
-            <path fill="none" d="M0 0h24v24H0V0z" />
-            <path
-              d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-            />
-          </svg> -->
+      <div class="region-and-search-container">
+        <form class="search-container" onsubmit="searchCountry(event)">
+          <div class="search-input-container">
+            <button class="submit-button" type="submit">
+              <svg
+                class="search-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.1111 9.77778H10.4L10.1333 9.51111C11.0222 8.53333 11.5556 7.2 11.5556 5.77778C11.5556 2.57778 8.97778 0 5.77778 0C2.57778 0 0 2.57778 0 5.77778C0 8.97778 2.57778 11.5556 5.77778 11.5556C7.2 11.5556 8.53333 11.0222 9.51111 10.1333L9.77778 10.4V11.1111L14.2222 15.5556L15.5556 14.2222L11.1111 9.77778ZM5.77778 9.77778C3.55556 9.77778 1.77778 8 1.77778 5.77778C1.77778 3.55556 3.55556 1.77778 5.77778 1.77778C8 1.77778 9.77778 3.55556 9.77778 5.77778C9.77778 8 8 9.77778 5.77778 9.77778Z"
+                  fill="none"
+                />
+              </svg>
+            </button>
 
-          <button class="submit-button" type="submit">
+            <input
+              class="search-input"
+              id="search-input"
+              type="search"
+              placeholder="Search for a country…"
+              oninput="populateSearchSuggestion()"
+              autocomplete="off"
+            />
+          </div>
+          <div id="search-suggestion"></div>
+        </form>
+
+        <div class="region-menu-container">
+          <div id="region-menu-button" tabindex="0">
+            <span>Filter by Region</span>
             <svg
-              class="search-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 16 16"
+              class="region-menu-arrow"
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
-                d="M11.1111 9.77778H10.4L10.1333 9.51111C11.0222 8.53333 11.5556 7.2 11.5556 5.77778C11.5556 2.57778 8.97778 0 5.77778 0C2.57778 0 0 2.57778 0 5.77778C0 8.97778 2.57778 11.5556 5.77778 11.5556C7.2 11.5556 8.53333 11.0222 9.51111 10.1333L9.77778 10.4V11.1111L14.2222 15.5556L15.5556 14.2222L11.1111 9.77778ZM5.77778 9.77778C3.55556 9.77778 1.77778 8 1.77778 5.77778C1.77778 3.55556 3.55556 1.77778 5.77778 1.77778C8 1.77778 9.77778 3.55556 9.77778 5.77778C9.77778 8 8 9.77778 5.77778 9.77778Z"
+                d="M2.81323 2.18749L5.68823 5.06249L2.81323 7.93749L3.68823 8.81249L7.43823 5.06249L3.68823 1.31249L2.81323 2.18749Z"
                 fill="none"
               />
             </svg>
-          </button>
-
-          <input
-            class="search-input"
-            id="search-input"
-            type="search"
-            placeholder="Search for a country…"
-            oninput="populateSearchSuggestion()"
-            autocomplete="off"
-          />
-        </div>
-        <div id="search-suggestion"></div>
-      </form>
-
-      <div class="region-menu-container">
-        <div onclick="expandRegionMenu(event)" id="menu-activator" tabindex="1">
-          <span id="menu-activator-text">Filter by Region</span>
-          <svg
-            width="8"
-            height="6"
-            viewBox="0 0 8 6"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              class="dropdown-arrow"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M6.875 0.875L4 3.75L1.125 0.875L0.25 1.75L4 5.5L7.75 1.75L6.875 0.875Z"
-            />
-          </svg>
-        </div>
-        <div id="region-menu">
-          <div
-            class="region-menu-items"
-            onclick="filterByRegion('Africa')"
-            id="africa-option"
-          >
-            Africa
           </div>
-          <div
-            class="region-menu-items"
-            onclick="filterByRegion('Americas')"
-            id="america-option"
-          >
-            America
-          </div>
-          <div
-            class="region-menu-items"
-            onclick="filterByRegion('Asia')"
-            id="asia-option"
-          >
-            Asia
-          </div>
-          <div
-            class="region-menu-items"
-            onclick="filterByRegion('Europe')"
-            id="europe-option"
-          >
-            Europe
-          </div>
-          <div
-            class="region-menu-items"
-            onclick="filterByRegion('Oceania')"
-            id="oceania-option"
-          >
-            Oceania
+          <div id="region-menu">
+            <div
+              tabindex="0"
+              class="region-menu-items"
+              onclick="filterByRegion('Africa')"
+              id="africa-option"
+            >
+              Africa
+            </div>
+            <div
+              tabindex="0"
+              class="region-menu-items"
+              onclick="filterByRegion('Americas')"
+              id="americas-option"
+            >
+              Americas
+            </div>
+            <div
+              tabindex="0"
+              class="region-menu-items"
+              onclick="filterByRegion('Asia')"
+              id="asia-option"
+            >
+              Asia
+            </div>
+            <div
+              tabindex="0"
+              class="region-menu-items"
+              onclick="filterByRegion('Europe')"
+              id="europe-option"
+            >
+              Europe
+            </div>
+            <div
+              tabindex="0"
+              class="region-menu-items"
+              onclick="filterByRegion('Oceania')"
+              id="oceania-option"
+            >
+              Oceania
+            </div>
           </div>
         </div>
       </div>
