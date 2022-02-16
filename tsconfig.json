@@ -15,6 +15,7 @@
   "files": [
     "scripts/darkMode.ts",
     "scripts/fetchCountries.ts",
-    "scripts/searchBox.ts"
+    "scripts/searchBox.ts",
+    "scripts/regionMenu.ts"
   ]
 }
